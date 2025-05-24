@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>My Name / Your Name Here</h1>
+            <p>A Free Lover and Web Developer</p>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="about" class="hero">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>
+                Hello! I'm a passionate web developer with a love for creating beautiful and functional websites.
+                I enjoy bringing ideas to life through code and continuously learning new technologies.
+                This is a simple portfolio showcasing my journey and capabilities.
+            </p>
+            <p>
+                When I'm not coding, you can find me exploring new ideas and enjoying life.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>My Skills</h2>
+            <ul id="skill-list">
+                <li data-skill="HTML">HTML (Click me!)</li>
+                <li data-skill="CSS">CSS (Click me!)</li>
+                <li data-skill="JavaScript">JavaScript (Click me!)</li>
+                <li data-skill="Web Design">Basic Web Design (Click me!)</li>
+            </ul>
+            <p id="skill-description" class="skill-description"></p>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="project-item">
+                <h3>Project One: Simple Calculator</h3>
+                <p>A basic calculator built with HTML, CSS, and JavaScript, demonstrating DOM manipulation.</p>
+                <a href="#" class="btn" target="_blank">View Project (Demo Link)</a>
+            </div>
+            <div class="project-item">
+                <h3>Project Two: To-Do List App</h3>
+                <p>A simple to-do list application to manage daily tasks, with local storage functionality.</p>
+                <a href="#" class="btn" target="_blank">View Project (Demo Link)</a>
+            </div>
+            </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <p>I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+            <address>
+                Email: <a href="mailto:your.email@example.com">your.email@example.com</a><br>
+                LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">Your LinkedIn Profile</a><br>
+                GitHub: <a href="https://github.com/yourusername" target="_blank">Your GitHub Profile</a>
+            </address>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> My Simple Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
