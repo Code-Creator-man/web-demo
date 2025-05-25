@@ -1,241 +1,139 @@
-/* Basic Reset & Body Styles */
-body {
-    margin: 0; /* Removes default body margin */
-    font-family: Arial, sans-serif; /* Sets a clean, common font */
-    line-height: 1.6; /* Improves readability */
-    color: #333; /* Dark gray text color */
-    background-color: #f4f4f4; /* Light gray background */
-}
-
-/* Container for consistent content width */
-.container {
-    width: 80%; /* Takes 80% of the screen width */
-    max-width: 1100px; /* Maximum width for larger screens */
-    margin: auto; /* Centers the container horizontally */
-    overflow: hidden; /* Clears floats within the container */
-    padding: 20px 0; /* Adds vertical padding */
-}
-
-/* Header Styles */
-header {
-    background: #333; /* Dark background */
-    color: #fff; /* White text */
-    padding-top: 30px; /* Space above content */
-    min-height: 70px; /* Minimum height for the header */
-    border-bottom: #77aaff 3px solid; /* Blue border at the bottom */
-    text-align: center; /* Centers text in header */
-}
-
-header h1 {
-    margin: 0;
-    padding-bottom: 5px;
-}
-
-header p {
-    font-size: 1.1em;
-    margin-top: 0;
-}
-
-/* Navigation Styles */
-header nav ul {
-    padding: 0;
-    list-style: none; /* Removes bullet points from list items */
-    margin-top: 15px; /* Space above nav links */
-}
-
-header nav ul li {
-    display: inline; /* Makes list items appear in a row */
-    padding: 0 15px; /* Horizontal padding between links */
-}
-
-header nav a {
-    color: #fff; /* White link color */
-    text-decoration: none; /* Removes underline from links */
-    text-transform: uppercase; /* Uppercase text */
-    font-size: 16px;
-    transition: color 0.3s ease; /* Smooth transition for color change on hover */
-}
-
-header nav a:hover {
-    color: #77aaff; /* Blue color on hover */
-}
-
-/* Hero Section (About Me) */
-.hero {
-    background: #e2e2e2; /* Slightly darker background */
-    color: #333;
-    padding: 40px 0;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow */
-}
-
-.hero h2 {
-    color: #007bff; /* Blue heading */
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 1.1em;
-    max-width: 800px;
-    margin: 0 auto; /* Center paragraphs */
-}
-
-/* Skills Section */
-.skills {
-    padding: 40px 0;
-    background: #fdfdfd;
-    text-align: center;
-}
-
-.skills h2 {
-    color: #007bff;
-    margin-bottom: 30px;
-}
-
-#skill-list {
-    list-style: none;
-    padding: 0;
-    display: flex; /* Use flexbox for horizontal layout */
-    justify-content: center; /* Center items horizontally */
-    flex-wrap: wrap; /* Allow items to wrap to next line if needed */
-    gap: 15px; /* Space between skill items */
-}
-
-#skill-list li {
-    background: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer; /* Indicates it's clickable */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
-    font-weight: bold;
-}
-
-#skill-list li:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    transform: translateY(-3px); /* Slightly lift on hover */
-}
-
-.skill-description {
-    margin-top: 25px;
-    font-style: italic;
-    color: #555;
-    min-height: 20px; /* Ensure space even when empty */
-}
-
-
-/* Projects Section */
-.projects {
-    padding: 40px 0;
-    background: #e2e2e2;
-    text-align: center;
-}
-
-.projects h2 {
-    color: #007bff;
-    margin-bottom: 30px;
-}
-
-.project-item {
-    background: #fff;
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    text-align: left;
-    transition: transform 0.3s ease;
-}
-
-.project-item:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-}
-
-.project-item h3 {
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.project-item p {
-    margin-bottom: 15px;
-}
-
-/* Button style for projects */
-.btn {
-    display: inline-block; /* Allows padding and margin */
-    background: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-/* Contact Section */
-.contact {
-    padding: 40px 0;
-    background: #fdfdfd;
-    text-align: center;
-}
-
-.contact h2 {
-    color: #007bff;
-    margin-bottom: 20px;
-}
-
-.contact address {
-    font-style: normal; /* Removes default italic for address */
-    line-height: 1.8;
-}
-
-.contact a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.contact a:hover {
-    color: #0056b3;
-}
-
-/* Footer Styles */
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 30px;
-}
-
-footer p {
-    margin: 0;
-    font-size: 0.9em;
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-    .container {
-        width: 90%; /* Wider container on smaller screens */
-    }
-
-    header h1 {
-        font-size: 1.8em;
-    }
-
-    header p {
-        font-size: 1em;
-    }
-
-    header nav ul li {
-        display: block; /* Stack nav items vertically */
-        padding: 10px 0;
-    }
-
-    .project-item {
-        text-align: center; /* Center project text on small screens */
-    }
-}
+ :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      background-color: #111827;
+      color: #f3f4f6;
+      }
+      .heading {
+      font-family: 'Poppins', sans-serif;
+      }
+      .hero-section {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://readdy.ai/api/search-image?query=A%20professional%203D%20artist%20workspace%20with%20Blender%20software%20open%20on%20a%20large%20monitor%2C%20showing%20a%20detailed%203D%20character%20model.%20The%20workspace%20has%20a%20modern%2C%20clean%20aesthetic%20with%20soft%20lighting.%20There%20are%20small%203D%20printed%20figurines%20on%20the%20desk%2C%20a%20graphics%20tablet%2C%20and%20a%20second%20monitor%20showing%20reference%20images.%20The%20overall%20mood%20is%20creative%20and%20professional%2C%20with%20a%20color%20palette%20of%20deep%20blues%20and%20purples.&width=1920&height=1080&seq=hero1&orientation=landscape');
+      background-size: cover;
+      background-position: center;
+      }
+      .about-bg {
+      background-image: linear-gradient(to right, #1f2937 50%, transparent 50%);
+      }
+      .skill-bar {
+      height: 8px;
+      border-radius: 4px;
+      background-color: #e5e7eb;
+      position: relative;
+      overflow: hidden;
+      }
+      .skill-progress {
+      position: absolute;
+      height: 100%;
+      border-radius: 4px;
+      background-color: #6366F1;
+      transition: width 1s ease-in-out;
+      }
+      .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+      }
+      .portfolio-item:hover img {
+      transform: scale(1.05);
+      }
+      input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #6366F1;
+      border-radius: 50%;
+      cursor: pointer;
+      }
+      .testimonial-slider {
+      scroll-snap-type: x mandatory;
+      }
+      .testimonial-slide {
+      scroll-snap-align: start;
+      }
+      .custom-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #6366F1;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      }
+      .custom-checkbox i {
+      color: white;
+      font-size: 14px;
+      display: none;
+      }
+      .custom-checkbox.checked {
+      background-color: #6366F1;
+      }
+      .custom-checkbox.checked i {
+      display: block;
+      }
+      .theme-switch {
+      width: 50px;
+      height: 26px;
+      background-color: #e5e7eb;
+      border-radius: 13px;
+      position: relative;
+      cursor: pointer;
+      }
+      .theme-switch-toggle {
+      width: 22px;
+      height: 22px;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+      .theme-switch.dark .theme-switch-toggle {
+      transform: translateX(24px);
+      background-color: #6366F1;
+      }
+      .dark-mode {
+      background-color: #1f2937;
+      color: #f9fafb;
+      }
+      .dark-mode .card {
+      background-color: #374151;
+      }
+      .dark-mode .bg-white {
+      background-color: #374151;
+      }
+      .dark-mode .text-gray-800 {
+      color: #f3f4f6;
+      }
+      .dark-mode .text-gray-700 {
+      color: #e5e7eb;
+      }
+      .dark-mode .text-gray-600 {
+      color: #d1d5db;
+      }
+      .dark-mode .border-gray-200 {
+      border-color: #4b5563;
+      }
+      .dark-mode .skill-bar {
+      background-color: #4b5563;
+      }
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+      }
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .hide-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+      }
+      @media (max-width: 768px) {
+      .about-bg {
+      background-image: none;
+      background-color: #1f2937;
+      }
+      .hero-section {
+      background-position: 70% center;
+      }
+      }
