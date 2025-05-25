@@ -1,1952 +1,328 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D Sanat Portfolyosu</title>
-    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
-    <!-- Favicon'u değiştirmek için aşağıdaki satırı düzenleyin -->
-    <link rel="icon" type="image/png" href="ubuntu-logo.png"
+    <title>3D Art Portfolio</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <!-- Google Fonts: Inter & Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Inter', Arial, sans-serif;
+        background: #181a20;
+        color: #f3f4f6;
+        overflow-x: hidden;
+      }
+      header {
+        background: rgba(35, 38, 58, 0.6);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(8px);
+        transition: background 0.3s;
+        margin: 0.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      nav {
+        display: flex;
+        gap: 2rem;
+        justify-content: flex-end;
+      }
+      nav a {
+        color: #f3f4f6;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+        position: relative;
+        font-family: 'Inter', Arial, sans-serif;
+      }
+      nav a::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 2px;
+        background: #a78bfa;
+        transition: width 0.3s;
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+      }
+      nav a:hover {
+        color: #a78bfa;
+      }
+      nav a:hover::after {
+        width: 100%;
+      }
+      .hero {
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(rgba(24,26,32,0.8),rgba(24,26,32,0.8)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+        padding: 4rem 1rem 2rem 1rem;
+        position: relative;
+        overflow: hidden;
+      }
+      /* Modern blur effect blobs */
+      .blur-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.5;
+        z-index: 0;
+        animation: blobMove 12s infinite alternate;
+      }
+      .blob1 {
+        width: 320px; height: 320px;
+        background: #6366f1;
+        top: -80px; left: -80px;
+        animation-delay: 0s;
+      }
+      .blob2 {
+        width: 220px; height: 220px;
+        background: #a78bfa;
+        bottom: -60px; right: -60px;
+        animation-delay: 2s;
+      }
+      @keyframes blobMove {
+        0% { transform: scale(1) translateY(0) translateX(0);}
+        50% { transform: scale(1.15) translateY(30px) translateX(40px);}
+        100% { transform: scale(1) translateY(0) translateX(0);}
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+        font-family: 'Poppins', Arial, sans-serif;
+        opacity: 0;
+        animation: fadeInUp 1s 0.2s forwards;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: #d1d5db;
+        font-family: 'Inter', Arial, sans-serif;
+        opacity: 0;
+        animation: fadeInUp 1s 0.5s forwards;
+      }
+      .hero .cta {
+        background: #6366f1;
+        color: #fff;
+        padding: 0.75rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 4px 24px 0 rgba(99,102,241,0.15);
+        font-family: 'Inter', Arial, sans-serif;
+        opacity: 0;
+        animation: fadeInUp 1s 0.8s forwards;
+      }
+      .hero .cta:hover {
+        background: #4f46e5;
+        transform: translateY(-2px) scale(1.04);
+      }
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px);}
+        to { opacity: 1; transform: translateY(0);}
+      }
+      .section {
+        padding: 3rem 1rem;
+        backdrop-filter: blur(2px);
+        background: transparent; /* Changed from rgba to transparent */
+        border-radius: 18px;
+        margin: 2rem auto;
+        max-width: 1100px;
+        box-shadow: 0 2px 32px 0 rgba(0,0,0,0.10);
+        position: relative;
+        z-index: 1;
+        animation: fadeInUp 1s 0.3s both;
+        font-family: 'Inter', Arial, sans-serif;
+      }
+      .section h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: #fff;
+        text-align: center;
+        font-family: 'Poppins', Arial, sans-serif;
+      }
+      .footer {
+        background: rgba(35,38,58,0.85);
+        color: #a1a1aa;
+        text-align: center;
+        padding: 2rem 1rem 1rem 1rem;
+        margin-top: 2rem;
+        backdrop-filter: blur(6px);
+        border-radius: 12px 12px 0 0;
+        font-family: 'Inter', Arial, sans-serif;
+      }
+      .footer .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      .footer a {
+        color: #f3f4f6;
+        text-decoration: none;
+        font-size: 1.5rem;
+        transition: color 0.2s;
+      }
+      .footer a:hover {
+        color: #a78bfa;
+      }
+      .notice {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(35,38,58,0.85);
+        color: #fff;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        z-index: 100;
+        backdrop-filter: blur(8px);
+        animation: fadeInUp 0.8s 0.2s both;
+        font-family: 'Inter', Arial, sans-serif;
+      }
+      .notice button {
+        background: #6366f1;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0.3rem 1rem;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background 0.2s;
+        font-family: 'Inter', Arial, sans-serif;
+      }
+      .notice button:hover {
+        background: #4f46e5;
+      }
+      @media (max-width: 600px) {
+        .hero h1 { font-size: 1.5rem; }
+        .section h2 { font-size: 1.3rem; }
+        nav { gap: 1rem; }
+        .section { padding: 1.5rem 0.5rem; }
+      }
+    </style>
   </head>
-  <body class="bg-gray-50">
-    <!-- Header -->
-    <header id="header" class="fixed w-full z-50 transition-all duration-300">
-      <div
-        class="container mx-auto px-4 py-4 flex justify-between items-center"
-      >
-        <a href="#" class="text-2xl font-['Pacifico'] text-white">Face of Dreams</a>
-        <nav class="hidden md:flex space-x-8">
-          <a
-            href="#about"
-            class="text-white hover:text-primary transition-colors font-medium"
-            >Hakkımda</a
-          >
-          <a
-            href="#portfolio"
-            class="text-white hover:text-primary transition-colors font-medium"
-            >Portfolyo</a
-          >
-          <a
-            href="#services"
-            class="text-white hover:text-primary transition-colors font-medium"
-            >Hizmetler</a
-          >
-          <a
-            href="#contact"
-            class="text-white hover:text-primary transition-colors font-medium"
-            >İletişim</a
-          >
+  <body>
+    <header>
+      <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:1.5rem;font-weight:bold;color:#a78bfa;font-family:'Poppins',Arial,sans-serif;">Face of Dreams</div>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact">Contact</a>
         </nav>
-        <div class="flex items-center space-x-4">
-          <div class="theme-switch" id="themeSwitch">
-            <div class="theme-switch-toggle"></div>
-          </div>
-          <button
-            class="md:hidden w-10 h-10 flex items-center justify-center text-white cursor-pointer"
-            id="mobileMenuBtn"
-          >
-            <i class="ri-menu-line ri-lg"></i>
-          </button>
-        </div>
-      </div>
-      <!-- Mobile Menu -->
-      <div id="mobileMenu" class="hidden bg-white shadow-lg absolute w-full">
-        <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
-          <a
-            href="#about"
-            class="text-gray-800 hover:text-primary transition-colors font-medium"
-            >Hakkımda</a
-          >
-          <a
-            href="#portfolio"
-            class="text-gray-800 hover:text-primary transition-colors font-medium"
-            >Portfolyo</a
-          >
-          <a
-            href="#services"
-            class="text-gray-800 hover:text-primary transition-colors font-medium"
-            >Hizmetler</a
-          >
-          <a
-            href="#contact"
-            class="text-gray-800 hover:text-primary transition-colors font-medium"
-            >İletişim</a
-          >
-        </div>
       </div>
     </header>
-    <!-- Hero Section -->
-    <section
-      id="home"
-      class="hero-section min-h-screen flex items-center bg-cover bg-center relative"
-      style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');"
-    >
-      <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-      <div class="container mx-auto px-4 relative z-10">
-        <div class="max-w-3xl">
-          <h1
-            class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 heading"
-          >
-            Blender ile 3D Sanat Dünyasına Hoş Geldiniz
-          </h1>
-          <p class="text-lg sm:text-xl text-gray-200 mb-8">
-            Hayalinizdeki 3D modelleri gerçeğe dönüştürüyorum. Karakterler,
-            mimari yapılar ve daha fazlası için özel tasarımlar.
-          </p>
-          <a
-            href="#portfolio"
-            class="inline-block bg-primary text-white px-6 sm:px-8 py-3 rounded-button font-medium hover:bg-opacity-90 transition-all shadow-lg whitespace-nowrap cursor-pointer"
-            >Portfolyomu Keşfet</a
-          >
-          <div class="flex space-x-4 mt-12">
-            <a
-              href="#"
-              class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-            >
-              <i class="ri-artstation-line text-white"></i>
-            </a>
-            <a
-              href="#"
-              class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-            >
-              <i class="ri-behance-line text-white"></i>
-            </a>
-            <a
-              href="#"
-              class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-            >
-              <i class="ri-instagram-line text-white"></i>
-            </a>
-          </div>
+    <section class="hero">
+      <!-- Blur blobs for modern effect -->
+      <div class="blur-blob blob1"></div>
+      <div class="blur-blob blob2"></div>
+      <h1>Welcome to the World of 3D Art</h1>
+      <p>I turn your dream 3D models into reality. Custom designs for characters, architecture, and more.</p>
+      <a href="#portfolio" class="cta">View Portfolio</a>
+    </section>
+    <section class="section" id="about">
+      <h2>About Me</h2>
+      <div class="container" style="max-width:700px;text-align:center;">
+        <p>
+          I am a professional 3D artist with experience in character modeling, architectural visualization, and digital art. My passion is to create unique and high-quality 3D assets for games, films, and creative projects.
+        </p>
+      </div>
+    </section>
+    <section class="section" id="portfolio">
+      <h2>Portfolio</h2>
+      <div class="container" style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
+        <div style="background:#23263a;padding:1rem;border-radius:8px;max-width:300px;box-shadow:0 2px 16px rgba(99,102,241,0.08);transition:transform 0.2s;">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="3D Work" style="width:100%;border-radius:6px;">
+          <h3 style="color:#fff;margin:1rem 0 0.5rem 0;font-family:'Poppins',Arial,sans-serif;">Sci-Fi Character</h3>
+          <p style="color:#d1d5db;">A detailed 3D character model for a game project.</p>
+        </div>
+        <div style="background:#23263a;padding:1rem;border-radius:8px;max-width:300px;box-shadow:0 2px 16px rgba(99,102,241,0.08);transition:transform 0.2s;">
+          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="3D Work" style="width:100%;border-radius:6px;">
+          <h3 style="color:#fff;margin:1rem 0 0.5rem 0;font-family:'Poppins',Arial,sans-serif;">Modern Architecture</h3>
+          <p style="color:#d1d5db;">Photorealistic architectural visualization.</p>
         </div>
       </div>
     </section>
-    <!-- About Section -->
-    <section id="about" class="py-16 md:py-24 about-bg bg-gray-900">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-center gap-12">
-          <div class="md:w-1/2">
-            <img
-              src="astronaut-purple-3840x2160-22432.jpg"
-              alt="3D Sanatçı"
-              class="rounded-lg shadow-xl object-cover w-full h-auto max-w-md mx-auto"
-            />
-          </div>
-          <div class="md:w-1/2 mt-8 md:mt-0">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-6 heading text-white">
-              Merhaba, Ben Berdimuhammet Yslamow
-            </h2>
-            <p class="text-gray-300 mb-6">
-              10 yılı aşkın süredir 3D modelleme ve dijital sanat alanında
-              profesyonel olarak çalışıyorum. Blender yazılımı ile
-              karakterlerden mimari yapılara, konsept sanatından oyun
-              varlıklarına kadar geniş bir yelpazede projeler üretiyorum.
-            </p>
-            <p class="text-gray-400 mb-8">
-              İstanbul Güzel Sanatlar Akademisi'nden mezun olduktan sonra,
-              uluslararası birçok projede yer aldım ve kendi özgün stilimi
-              geliştirdim. Detaylara olan tutkum ve teknik mükemmellik arayışım,
-              her projemde kendini gösteriyor.
-            </p>
-            <div class="space-y-6 mb-8">
-              <div>
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-300">Blender</span>
-                  <span class="text-gray-400">95%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 95%"></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-300">3D Modelleme</span>
-                  <span class="text-gray-400">90%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 90%"></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-300"
-                    >Texture & Materyal</span
-                  >
-                  <span class="text-gray-400">85%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 85%"></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between mb-2">
-                  <span class="font-medium text-gray-300"
-                    >Rigging & Animasyon</span
-                  >
-                  <span class="text-gray-400">80%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 80%"></div>
-                </div>
-              </div>
-            </div>
-            <div class="grid grid-cols-2 sm:flex sm:flex-wrap gap-4">
-              <div class="bg-gray-800 px-4 py-2 rounded-lg">
-                <div
-                  class="text-center text-xl sm:text-2xl font-bold text-primary"
-                >
-                  250+
-                </div>
-                <div class="text-gray-300 text-sm">Tamamlanan Proje</div>
-              </div>
-              <div class="bg-gray-800 px-4 py-2 rounded-lg">
-                <div
-                  class="text-center text-xl sm:text-2xl font-bold text-primary"
-                >
-                  120+
-                </div>
-                <div class="text-gray-300 text-sm">Mutlu Müşteri</div>
-              </div>
-              <div class="bg-gray-800 px-4 py-2 rounded-lg">
-                <div
-                  class="text-center text-xl sm:text-2xl font-bold text-primary"
-                >
-                  10+
-                </div>
-                <div class="text-gray-300 text-sm">Yıllık Deneyim</div>
-              </div>
-              <div class="bg-gray-800 px-4 py-2 rounded-lg">
-                <div
-                  class="text-center text-xl sm:text-2xl font-bold text-primary"
-                >
-                  15+
-                </div>
-                <div class="text-gray-300 text-sm">Ödül & Başarı</div>
-              </div>
-            </div>
-          </div>
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <div class="container" style="max-width:500px;text-align:center;">
+        <p>For project offers or questions, contact me at:</p>
+        <p style="margin:1rem 0;font-weight:bold;">info@yourmail.com</p>
+        <div style="display:flex;justify-content:center;gap:1rem;margin-top:1.5rem;">
+          <a href="https://github.com/" target="_blank" style="color:#f3f4f6;text-decoration:none;font-size:2rem;">
+            <i class="ri-github-line"></i>
+          </a>
+          <a href="https://twitter.com/" target="_blank" style="color:#f3f4f6;text-decoration:none;font-size:2rem;">
+            <i class="ri-twitter-line"></i>
+          </a>
+          <a href="https://spotify.com/" target="_blank" style="color:#f3f4f6;text-decoration:none;font-size:2rem;">
+            <i class="ri-spotify-line"></i>
+          </a>
+          <a href="https://youtube.com/" target="_blank" style="color:#f3f4f6;text-decoration:none;font-size:2rem;">
+            <i class="ri-youtube-line"></i>
+          </a>
         </div>
       </div>
     </section>
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-16 md:py-24 bg-gray-900">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12 md:mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4 heading text-white">
-            Portfolyo
-          </h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">
-            En son projelerim ve çalışmalarım. Her bir model detaylı olarak
-            tasarlanmış ve yüksek kalitede render edilmiştir.
-          </p>
-        </div>
-        <div
-          class="flex flex-wrap justify-center gap-3 md:gap-4 mb-8 md:mb-12 overflow-x-auto"
-        >
-          <button
-            class="filter-btn active px-4 sm:px-6 py-2 rounded-full bg-primary text-white font-medium hover:bg-opacity-90 transition-all whitespace-nowrap !rounded-button cursor-pointer"
-            data-filter="all"
-          >
-            Tümü
-          </button>
-          <button
-            class="filter-btn px-4 sm:px-6 py-2 rounded-full bg-gray-700 text-gray-200 font-medium hover:bg-gray-600 transition-all whitespace-nowrap !rounded-button cursor-pointer"
-            data-filter="character"
-          >
-            Karakterler
-          </button>
-          <button
-            class="filter-btn px-4 sm:px-6 py-2 rounded-full bg-gray-700 text-gray-200 font-medium hover:bg-gray-600 transition-all whitespace-nowrap !rounded-button cursor-pointer"
-            data-filter="environment"
-          >
-            Çevreler
-          </button>
-          <button
-            class="filter-btn px-4 sm:px-6 py-2 rounded-full bg-gray-700 text-gray-200 font-medium hover:bg-gray-600 transition-all whitespace-nowrap !rounded-button cursor-pointer"
-            data-filter="prop"
-          >
-            Objeler
-          </button>
-          <button
-            class="filter-btn px-4 sm:px-6 py-2 rounded-full bg-gray-700 text-gray-200 font-medium hover:bg-gray-600 transition-all whitespace-nowrap !rounded-button cursor-pointer"
-            data-filter="architecture"
-          >
-            Mimari
-          </button>
-        </div>
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-        >
-          <!-- Portfolio Item 1 -->
-          <div class="portfolio-item group" data-category="character">
-            <div class="relative overflow-hidden rounded-lg shadow-lg">
-              <img
-                src="https://readdy.ai/api/search-image?query=A%20highly%20detailed%203D%20character%20model%20of%20a%20sci-fi%20warrior%20with%20futuristic%20armor%2C%20created%20in%20Blender.%20The%20character%20has%20intricate%20details%2C%20realistic%20textures%2C%20and%20dramatic%20lighting.%20The%20model%20is%20shown%20in%20a%20neutral%20pose%20against%20a%20simple%20background%20to%20highlight%20the%20craftsmanship.%20The%20rendering%20quality%20is%20professional%20with%20perfect%20materials%20and%20lighting.&width=600&height=600&seq=port1&orientation=squarish"
-                alt="Sci-Fi Karakter"
-                class="w-full h-auto object-cover transition-transform duration-500"
-              />
-              <div
-                class="portfolio-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300"
-              >
-                <h3 class="text-xl font-bold text-white mb-2">
-                  Nova Savaşçısı
-                </h3>
-                <p class="text-white text-center mb-4">
-                  Bilim kurgu oyunu için tasarlanmış detaylı karakter modeli
-                </p>
-                <div class="flex space-x-4">
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-eye-line text-white"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-information-line text-white"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4">
-              <h3 class="text-lg font-medium text-white">Nova Savaşçısı</h3>
-              <p class="text-gray-400">Karakter Modeli</p>
-            </div>
-          </div>
-          <!-- Portfolio Item 2 -->
-          <div class="portfolio-item group" data-category="environment">
-            <div class="relative overflow-hidden rounded-lg shadow-lg">
-              <img
-                src="https://readdy.ai/api/search-image?query=A%20beautiful%203D%20environment%20scene%20created%20in%20Blender%20showing%20an%20enchanted%20forest%20with%20magical%20elements.%20The%20scene%20includes%20detailed%20trees%20with%20glowing%20elements%2C%20a%20small%20stream%20with%20realistic%20water%20effects%2C%20and%20atmospheric%20lighting%20with%20god%20rays%20coming%20through%20the%20canopy.%20The%20rendering%20shows%20high-quality%20textures%20and%20materials%20with%20perfect%20lighting%20setup%20to%20create%20a%20mystical%20atmosphere.&width=600&height=600&seq=port2&orientation=squarish"
-                alt="Fantastik Orman"
-                class="w-full h-auto object-cover transition-transform duration-500"
-              />
-              <div
-                class="portfolio-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300"
-              >
-                <h3 class="text-xl font-bold text-white mb-2">Büyülü Orman</h3>
-                <p class="text-white text-center mb-4">
-                  Fantastik film projesi için tasarlanmış atmosferik çevre
-                </p>
-                <div class="flex space-x-4">
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-eye-line text-white"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-information-line text-white"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4">
-              <h3 class="text-lg font-medium text-white">Büyülü Orman</h3>
-              <p class="text-gray-400">Çevre Tasarımı</p>
-            </div>
-          </div>
-          <!-- Portfolio Item 3 -->
-          <div class="portfolio-item group" data-category="prop">
-            <div class="relative overflow-hidden rounded-lg shadow-lg">
-              <img
-                src="https://readdy.ai/api/search-image?query=A%20detailed%203D%20model%20of%20an%20ancient%20magical%20artifact%20created%20in%20Blender.%20The%20artifact%20is%20an%20ornate%20staff%20or%20wand%20with%20intricate%20carvings%2C%20gemstones%2C%20and%20metallic%20details.%20The%20model%20shows%20perfect%20texturing%20with%20realistic%20materials%20like%20aged%20metal%2C%20glowing%20crystals%2C%20and%20worn%20leather%20wrappings.%20The%20rendering%20has%20dramatic%20lighting%20to%20highlight%20the%20craftsmanship%20and%20details%20of%20the%20model%20against%20a%20simple%20dark%20background.&width=600&height=600&seq=port3&orientation=squarish"
-                alt="Antik Eser"
-                class="w-full h-auto object-cover transition-transform duration-500"
-              />
-              <div
-                class="portfolio-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300"
-              >
-                <h3 class="text-xl font-bold text-white mb-2">Antik Asa</h3>
-                <p class="text-white text-center mb-4">
-                  Fantezi RPG için tasarlanmış detaylı prop modeli
-                </p>
-                <div class="flex space-x-4">
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-eye-line text-white"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-information-line text-white"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4">
-              <h3 class="text-lg font-medium text-white">Antik Asa</h3>
-              <p class="text-gray-400">Prop Modeli</p>
-            </div>
-          </div>
-          <!-- Portfolio Item 4 -->
-          <div class="portfolio-item group" data-category="architecture">
-            <div class="relative overflow-hidden rounded-lg shadow-lg">
-              <img
-                src="https://readdy.ai/api/search-image?query=A%20stunning%203D%20architectural%20visualization%20created%20in%20Blender%20showing%20a%20modern%20minimalist%20house%20with%20clean%20lines%20and%20large%20glass%20windows.%20The%20scene%20includes%20perfect%20lighting%20with%20golden%20hour%20sunlight%2C%20realistic%20materials%20like%20concrete%2C%20wood%2C%20and%20glass%20with%20proper%20reflections.%20The%20surrounding%20environment%20has%20landscaping%20elements%20like%20a%20manicured%20lawn%2C%20some%20trees%2C%20and%20perhaps%20a%20swimming%20pool.%20The%20rendering%20quality%20is%20photorealistic%20with%20attention%20to%20architectural%20details.&width=600&height=600&seq=port4&orientation=squarish"
-                alt="Modern Villa"
-                class="w-full h-auto object-cover transition-transform duration-500"
-              />
-              <div
-                class="portfolio-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300"
-              >
-                <h3 class="text-xl font-bold text-white mb-2">Modern Villa</h3>
-                <p class="text-white text-center mb-4">
-                  Mimari görselleştirme projesi için fotorealistik render
-                </p>
-                <div class="flex space-x-4">
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-eye-line text-white"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-information-line text-white"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4">
-              <h3 class="text-lg font-medium text-white">Modern Villa</h3>
-              <p class="text-gray-400">Mimari Görselleştirme</p>
-            </div>
-          </div>
-          <!-- Portfolio Item 5 -->
-          <div class="portfolio-item group" data-category="character">
-            <div class="relative overflow-hidden rounded-lg shadow-lg">
-              <img
-                src="https://readdy.ai/api/search-image?query=A%20detailed%203D%20character%20model%20of%20a%20fantasy%20creature%20or%20monster%20created%20in%20Blender.%20The%20creature%20has%20unique%20anatomy%20with%20scales%2C%20horns%2C%20and%20other%20fantastical%20elements.%20The%20model%20shows%20excellent%20topology%2C%20detailed%20texturing%20with%20realistic%20skin%2Fscales%2C%20and%20proper%20rigging%20for%20animation.%20The%20rendering%20has%20dramatic%20lighting%20to%20showcase%20the%20details%20and%20create%20an%20imposing%20atmosphere.%20The%20background%20is%20simple%20to%20keep%20focus%20on%20the%20character%20design.&width=600&height=600&seq=port5&orientation=squarish"
-                alt="Fantastik Yaratık"
-                class="w-full h-auto object-cover transition-transform duration-500"
-              />
-              <div
-                class="portfolio-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300"
-              >
-                <h3 class="text-xl font-bold text-white mb-2">
-                  Orman Muhafızı
-                </h3>
-                <p class="text-white text-center mb-4">
-                  Fantezi evreninde yaşayan mistik yaratık tasarımı
-                </p>
-                <div class="flex space-x-4">
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-eye-line text-white"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-information-line text-white"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4">
-              <h3 class="text-lg font-medium text-white">Orman Muhafızı</h3>
-              <p class="text-gray-400">Karakter Modeli</p>
-            </div>
-          </div>
-          <!-- Portfolio Item 6 -->
-          <div class="portfolio-item group" data-category="environment">
-            <div class="relative overflow-hidden rounded-lg shadow-lg">
-              <img
-                src="https://readdy.ai/api/search-image?query=A%20detailed%203D%20environment%20scene%20of%20a%20futuristic%20cyberpunk%20city%20created%20in%20Blender.%20The%20scene%20shows%20a%20street%20view%20with%20tall%20neon-lit%20buildings%2C%20holographic%20advertisements%2C%20and%20futuristic%20vehicles.%20The%20model%20has%20detailed%20architecture%20with%20intricate%20sci-fi%20elements%2C%20realistic%20materials%20with%20proper%20reflections%20and%20emissions%20for%20neon%20lights.%20The%20lighting%20creates%20a%20moody%20atmosphere%20with%20blues%20and%20purples%20contrasting%20with%20bright%20neon%20colors.%20The%20rendering%20quality%20is%20high%20with%20attention%20to%20atmospheric%20effects%20like%20fog%20and%20light%20rays.&width=600&height=600&seq=port6&orientation=squarish"
-                alt="Cyberpunk Şehir"
-                class="w-full h-auto object-cover transition-transform duration-500"
-              />
-              <div
-                class="portfolio-overlay absolute inset-0 bg-primary bg-opacity-80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300"
-              >
-                <h3 class="text-xl font-bold text-white mb-2">Neo Tokyo</h3>
-                <p class="text-white text-center mb-4">
-                  Cyberpunk temalı şehir konsepti ve görselleştirmesi
-                </p>
-                <div class="flex space-x-4">
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-eye-line text-white"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-all cursor-pointer"
-                  >
-                    <i class="ri-information-line text-white"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4">
-              <h3 class="text-lg font-medium text-white">Neo Tokyo</h3>
-              <p class="text-gray-400">Çevre Tasarımı</p>
-            </div>
-          </div>
-        </div>
-        <div class="text-center mt-8 md:mt-12">
-          <a
-            href="#"
-            class="inline-block bg-primary text-white px-6 sm:px-8 py-3 rounded-button font-medium hover:bg-opacity-90 transition-all shadow-lg whitespace-nowrap cursor-pointer"
-            >Daha Fazla Göster</a
-          >
-        </div>
-      </div>
-    </section>
-    <!-- 3D Model Viewer Section -->
-    <section class="py-16 md:py-24 bg-gray-800">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12 md:mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4 heading text-white">
-            3D Model İnceleme
-          </h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">
-            Modellerimi 360° döndürerek inceleyebilirsiniz. Detayları yakından
-            görmek için yakınlaştırma yapabilirsiniz.
-          </p>
-        </div>
-        <div
-          class="bg-gray-700 p-6 md:p-8 rounded-lg shadow-lg border border-gray-600"
-        >
-          <div class="flex flex-col md:flex-row gap-8">
-            <div class="md:w-2/3">
-              <div
-                class="aspect-video bg-gray-800 rounded-lg overflow-hidden relative"
-              >
-                <img
-                  src="https://readdy.ai/api/search-image?query=A%203D%20character%20model%20render%20from%20Blender%20showing%20a%20detailed%20fantasy%20warrior%20with%20armor%20and%20weapons.%20The%20image%20shows%20the%20model%20from%20a%20three-quarter%20view%20against%20a%20neutral%20background%20with%20professional%20studio%20lighting%20to%20highlight%20the%20details.%20The%20model%20has%20high-quality%20textures%2C%20materials%2C%20and%20a%20neutral%20pose%20to%20showcase%20the%20design.%20The%20rendering%20quality%20is%20excellent%20with%20proper%20shadows%20and%20reflections.&width=800&height=450&seq=model1&orientation=landscape"
-                  alt="3D Model Önizleme"
-                  class="w-full h-full object-cover"
-                />
-                <div class="absolute bottom-4 right-4 flex space-x-2">
-                  <button
-                    class="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 transition-all cursor-pointer"
-                  >
-                    <i class="ri-zoom-in-line text-gray-700"></i>
-                  </button>
-                  <button
-                    class="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 transition-all cursor-pointer"
-                  >
-                    <i class="ri-refresh-line text-gray-700"></i>
-                  </button>
-                  <button
-                    class="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-md hover:bg-gray-100 transition-all cursor-pointer"
-                  >
-                    <i class="ri-fullscreen-line text-gray-700"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="mt-6">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-gray-300 font-medium">Döndürme</span>
-                  <span class="text-gray-400" id="rotationValue">180°</span>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="360"
-                  value="180"
-                  class="w-full h-2 bg-gray-600 rounded-full appearance-none cursor-pointer"
-                  id="rotationSlider"
-                />
-              </div>
-              <div class="mt-4">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-gray-300 font-medium">Yakınlaştırma</span>
-                  <span class="text-gray-400" id="zoomValue">50%</span>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="50"
-                  class="w-full h-2 bg-gray-600 rounded-full appearance-none cursor-pointer"
-                  id="zoomSlider"
-                />
-              </div>
-            </div>
-            <div class="md:w-1/3 mt-6 md:mt-0">
-              <h3 class="text-xl md:text-2xl font-bold mb-4 text-white">
-                Ruh Koruyucusu
-              </h3>
-              <p class="text-gray-300 mb-6">
-                Fantastik bir evrende yer alan bu karakter, ruhları koruyan ve
-                onlara rehberlik eden bir savaşçıdır. Detaylı zırh tasarımı ve
-                silahları, karakterin hikayesini ve gücünü yansıtmaktadır.
-              </p>
-              <div class="space-y-4 mb-6">
-                <div class="flex justify-between">
-                  <span class="text-gray-400">Kategori:</span>
-                  <span class="text-gray-200 font-medium">Karakter Modeli</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-gray-400">Poligon Sayısı:</span>
-                  <span class="text-gray-200 font-medium">125,000</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-gray-400">Materyal Sayısı:</span>
-                  <span class="text-gray-200 font-medium">12</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-gray-400">Rigged:</span>
-                  <span class="text-gray-200 font-medium">Evet</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-gray-400">Animasyon:</span>
-                  <span class="text-gray-200 font-medium"
-                    >Temel Hareketler</span
-                  >
-                </div>
-              </div>
-              <a
-                href="#contact"
-                class="inline-block w-full bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-opacity-90 transition-all text-center shadow-lg whitespace-nowrap cursor-pointer"
-                >Bu Model İçin Teklif Al</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Services Section -->
-    <section id="services" class="py-16 md:py-24 bg-gray-900">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12 md:mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4 heading text-white">
-            Hizmetlerim
-          </h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">
-            Profesyonel 3D modelleme ve görselleştirme hizmetleri sunuyorum.
-            İhtiyaçlarınıza özel çözümler için benimle iletişime geçin.
-          </p>
-        </div>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-        >
-          <!-- Service 1 -->
-          <div
-            class="bg-gray-800 rounded-lg p-6 md:p-8 shadow-lg transition-transform hover:transform hover:scale-105"
-          >
-            <div
-              class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mb-6"
-            >
-              <i class="ri-user-3-line text-primary text-xl md:text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-4 text-white">
-              Karakter Modelleme
-            </h3>
-            <p class="text-gray-300 mb-6">
-              Oyunlar, filmler ve animasyonlar için detaylı ve gerçekçi karakter
-              modelleri tasarlıyorum. Konsept aşamasından rigging ve animasyona
-              kadar tam hizmet.
-            </p>
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300"
-                  >Yüksek ve düşük poligon modeller</span
-                >
-              </div>
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300">Detaylı tekstürleme</span>
-              </div>
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300">Rigging ve temel animasyonlar</span>
-              </div>
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300">Oyun motorlarına uygun export</span>
-              </div>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-gray-400 text-sm">Başlangıç fiyatı</span>
-                <div class="text-xl md:text-2xl font-bold text-white">
-                  ₺2,500
-                </div>
-              </div>
-              <a
-                href="#contact"
-                class="inline-block bg-primary text-white px-4 sm:px-6 py-2 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap cursor-pointer"
-                >Teklif Al</a
-              >
-            </div>
-          </div>
-          <!-- Service 2 -->
-          <div
-            class="bg-gray-800 rounded-lg p-6 md:p-8 shadow-lg transition-transform hover:transform hover:scale-105"
-          >
-            <div
-              class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mb-6"
-            >
-              <i class="ri-building-line text-primary text-xl md:text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-4 text-white">
-              Mimari Görselleştirme
-            </h3>
-            <p class="text-gray-300 mb-6">
-              Mimari projeleriniz için fotorealistik 3D görselleştirmeler
-              üretiyorum. İç mekan, dış mekan ve çevre düzenlemesi için kapsamlı
-              hizmet.
-            </p>
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300">Fotorealistik renderlar</span>
-              </div>
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300"
-                  >İç ve dış mekan görselleştirme</span
-                >
-              </div>
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300">Çevre düzenleme ve peyzaj</span>
-              </div>
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300">360° panoramik görüntüler</span>
-              </div>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-gray-400 text-sm">Başlangıç fiyatı</span>
-                <div class="text-xl md:text-2xl font-bold text-white">
-                  ₺3,000
-                </div>
-              </div>
-              <a
-                href="#contact"
-                class="inline-block bg-primary text-white px-4 sm:px-6 py-2 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap cursor-pointer"
-                >Teklif Al</a
-              >
-            </div>
-          </div>
-          <!-- Service 3 -->
-          <div
-            class="bg-gray-800 rounded-lg p-6 md:p-8 shadow-lg transition-transform hover:transform hover:scale-105"
-          >
-            <div
-              class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mb-6"
-            >
-              <i class="ri-gamepad-line text-primary text-xl md:text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-4 text-white">Oyun Varlıkları</h3>
-            <p class="text-gray-300 mb-6">
-              Oyun projeleri için optimize edilmiş 3D modeller ve varlıklar
-              oluşturuyorum. Karakterler, çevreler, proplar ve daha fazlası.
-            </p>
-            <div class="space-y-3 mb-6">
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300"
-                  >Optimize edilmiş low-poly modeller</span
-                >
-              </div>
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300">PBR malzemeler ve tekstürler</span>
-              </div>
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300"
-                  >LOD (Level of Detail) seviyeleri</span
-                >
-              </div>
-              <div class="flex items-center">
-                <i class="ri-check-line text-primary mr-2"></i>
-                <span class="text-gray-300">Unity ve Unreal Engine uyumlu</span>
-              </div>
-            </div>
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="text-gray-400 text-sm">Başlangıç fiyatı</span>
-                <div class="text-xl md:text-2xl font-bold text-white">
-                  ₺1,800
-                </div>
-              </div>
-              <a
-                href="#contact"
-                class="inline-block bg-primary text-white px-4 sm:px-6 py-2 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap cursor-pointer"
-                >Teklif Al</a
-              >
-            </div>
-          </div>
-        </div>
-        <!-- Custom Project -->
-        <div
-          class="mt-12 md:mt-16 bg-gradient-to-r from-primary to-secondary rounded-lg p-6 md:p-8 shadow-xl"
-        >
-          <div class="flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-2/3 mb-6 md:mb-0">
-              <h3 class="text-xl md:text-2xl font-bold mb-4 text-white">
-                Özel Proje mi Var?
-              </h3>
-              <p class="text-white text-opacity-90 mb-4">
-                Yukarıdaki hizmetler arasında ihtiyacınıza uygun bir çözüm
-                bulamadınız mı? Özel projeleriniz için size özel çözümler
-                sunabilirim.
-              </p>
-              <p class="text-white text-opacity-90">
-                Her proje benzersizdir ve özel ilgi gerektirir. Fikirlerinizi
-                hayata geçirmek için benimle iletişime geçin.
-              </p>
-            </div>
-            <div>
-              <a
-                href="#contact"
-                class="inline-block bg-white text-primary px-6 sm:px-8 py-3 rounded-button font-medium hover:bg-opacity-90 transition-all shadow-lg whitespace-nowrap cursor-pointer"
-                >Özel Teklif İste</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Process Section -->
-    <section class="py-16 md:py-24 bg-gray-800">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12 md:mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4 heading text-white">
-            Çalışma Sürecim
-          </h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">
-            Projelerinizi hayata geçirirken izlediğim adımlar. Şeffaf ve verimli
-            bir süreç için her aşamada sizinle iletişim halinde oluyorum.
-          </p>
-        </div>
-        <div class="relative">
-          <!-- Timeline Line -->
-          <div
-            class="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gray-600 transform -translate-x-1/2"
-          ></div>
-          <!-- Step 1 -->
-          <div class="flex flex-col md:flex-row items-center mb-12 md:mb-24">
-            <div
-              class="md:w-1/2 md:pr-16 mb-8 md:mb-0 text-center md:text-right"
-            >
-              <h3 class="text-xl md:text-2xl font-bold mb-4 text-white">
-                1. Konsept ve Planlama
-              </h3>
-              <p class="text-gray-300">
-                Projenizin gereksinimlerini anlamak ve vizyonunuzu kavramak için
-                detaylı bir görüşme yapıyoruz. Bu aşamada referanslar toplanır
-                ve proje kapsamı belirlenir.
-              </p>
-            </div>
-            <div
-              class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-10"
-            >
-              <div
-                class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-primary rounded-full text-white text-xl font-bold shadow-lg"
-              >
-                1
-              </div>
-            </div>
-            <div class="md:w-1/2 md:pl-16 md:text-left mt-6 md:mt-0">
-              <img
-                src="https://readdy.ai/api/search-image?query=A%203D%20artist%20sketching%20concept%20art%20for%20a%20character%20or%20environment.%20The%20artist%20is%20working%20at%20a%20desk%20with%20reference%20materials%20and%20a%20digital%20tablet.%20The%20scene%20shows%20the%20planning%20phase%20of%203D%20modeling%20with%20mood%20boards%2C%20sketches%2C%20and%20reference%20images%20organized%20neatly.%20The%20lighting%20is%20bright%20and%20professional%2C%20creating%20a%20creative%20workspace%20atmosphere.&width=400&height=300&seq=process1&orientation=landscape"
-                alt="Konsept ve Planlama"
-                class="rounded-lg shadow-lg w-full"
-              />
-            </div>
-          </div>
-          <!-- Step 2 -->
-          <div
-            class="flex flex-col md:flex-row-reverse items-center mb-12 md:mb-24"
-          >
-            <div
-              class="md:w-1/2 md:pl-16 mb-8 md:mb-0 text-center md:text-left"
-            >
-              <h3 class="text-xl md:text-2xl font-bold mb-4 text-white">
-                2. Modelleme
-              </h3>
-              <p class="text-gray-300">
-                Onaylanan konsept doğrultusunda 3D modelleme aşamasına
-                geçiyorum. Blender yazılımı kullanarak detaylı ve kaliteli
-                modeller oluşturuyorum. Bu süreçte düzenli olarak ilerleme
-                güncellemeleri paylaşıyorum.
-              </p>
-            </div>
-            <div
-              class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-10"
-            >
-              <div
-                class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-primary rounded-full text-white text-xl font-bold shadow-lg"
-              >
-                2
-              </div>
-            </div>
-            <div class="md:w-1/2 md:pr-16 md:text-right mt-6 md:mt-0">
-              <img
-                src="https://readdy.ai/api/search-image?query=A%203D%20artist%20working%20in%20Blender%20software%20on%20a%20computer%20with%20multiple%20monitors.%20The%20screen%20shows%20a%203D%20model%20in%20wireframe%20or%20early%20modeling%20stage.%20The%20artist%20is%20focused%20on%20creating%20the%20basic%20shape%20and%20structure%20of%20a%20character%20or%20object.%20The%20workspace%20is%20professional%20with%20good%20lighting%2C%20and%20the%20scene%20captures%20the%20technical%20aspect%20of%203D%20modeling%20work.&width=400&height=300&seq=process2&orientation=landscape"
-                alt="Modelleme"
-                class="rounded-lg shadow-lg w-full"
-              />
-            </div>
-          </div>
-          <!-- Step 3 -->
-          <div class="flex flex-col md:flex-row items-center mb-12 md:mb-24">
-            <div
-              class="md:w-1/2 md:pr-16 mb-8 md:mb-0 text-center md:text-right"
-            >
-              <h3 class="text-xl md:text-2xl font-bold mb-4 text-white">
-                3. Tekstürleme ve Materyal
-              </h3>
-              <p class="text-gray-300">
-                Modele gerçekçi görünüm kazandırmak için tekstürleme ve materyal
-                oluşturma aşamasına geçiyorum. PBR malzemeler ve detaylı
-                tekstürler ile modeli canlandırıyorum.
-              </p>
-            </div>
-            <div
-              class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-10"
-            >
-              <div
-                class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-primary rounded-full text-white text-xl font-bold shadow-lg"
-              >
-                3
-              </div>
-            </div>
-            <div class="md:w-1/2 md:pl-16 md:text-left mt-6 md:mt-0">
-              <img
-                src="https://readdy.ai/api/search-image?query=A%203D%20artist%20working%20on%20texturing%20and%20materials%20in%20Blender.%20The%20screen%20shows%20a%203D%20model%20with%20texture%20painting%20in%20progress%20or%20material%20nodes%20being%20adjusted.%20The%20artist%20is%20focused%20on%20adding%20realistic%20textures%2C%20colors%2C%20and%20material%20properties%20to%20the%20model.%20The%20workspace%20shows%20reference%20materials%20for%20textures%2C%20and%20the%20scene%20captures%20the%20artistic%20aspect%20of%20the%20texturing%20process.&width=400&height=300&seq=process3&orientation=landscape"
-                alt="Tekstürleme"
-                class="rounded-lg shadow-lg w-full"
-              />
-            </div>
-          </div>
-          <!-- Step 4 -->
-          <div class="flex flex-col md:flex-row-reverse items-center mb-12 md:mb-24">
-            <div
-              class="md:w-1/2 md:pl-16 mb-8 md:mb-0 text-center md:text-left"
-            >
-              <h3 class="text-xl md:text-2xl font-bold mb-4 text-white">
-                4. Rigging ve Animasyon
-              </h3>
-              <p class="text-gray-300">
-                Karakter modelleri için rigging yaparak hareketli hale
-                getiriyorum. Gerekli animasyonları ekleyerek modelin kullanıma
-                hazır olmasını sağlıyorum.
-              </p>
-            </div>
-            <div
-              class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-10"
-            >
-              <div
-                class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-primary rounded-full text-white text-xl font-bold shadow-lg"
-              >
-                4
-              </div>
-            </div>
-            <div class="md:w-1/2 md:pr-16 md:text-right mt-6 md:mt-0">
-              <img
-                src="https://readdy.ai/api/search-image?query=A%203D%20artist%20working%20on%20rigging%20or%20animating%20a%20character%20in%20Blender.%20The%20screen%20shows%20a%20character%20model%20with%20a%20visible%20armature%2Fskeleton%20and%20animation%20controls.%20The%20artist%20is%20focused%20on%20setting%20up%20bones%20or%20creating%20animation%20keyframes.%20The%20workspace%20is%20professional%20with%20multiple%20monitors%20showing%20different%20views%20of%20the%20animation%20process.%20The%20scene%20captures%20the%20technical%20aspect%20of%20bringing%20a%203D%20character%20to%20life.&width=400&height=300&seq=process4&orientation=landscape"
-                alt="Rigging ve Animasyon"
-                class="rounded-lg shadow-lg w-full"
-              />
-            </div>
-          </div>
-          <!-- Step 5 -->
-          <div class="flex flex-col md:flex-row items-center">
-            <div
-              class="md:w-1/2 md:pr-16 mb-8 md:mb-0 text-center md:text-right"
-            >
-              <h3 class="text-xl md:text-2xl font-bold mb-4 text-white">
-                5. Render ve Teslimat
-              </h3>
-              <p class="text-gray-300">
-                Son aşamada modeli yüksek kalitede render ediyorum ve talep
-                edilen formatlarda teslim ediyorum. Gerekli dosyaları ve
-                dokümantasyonu içeren kapsamlı bir paket hazırlıyorum.
-              </p>
-            </div>
-            <div
-              class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-10"
-            >
-              <div
-                class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-primary rounded-full text-white text-xl font-bold shadow-lg"
-              >
-                5
-              </div>
-            </div>
-            <div class="md:w-1/2 md:pl-16 md:text-left mt-6 md:mt-0">
-              <img
-                src="https://readdy.ai/api/search-image?query=A%203D%20artist%20reviewing%20final%20renders%20of%20a%20completed%203D%20model%20or%20scene.%20The%20screen%20shows%20high-quality%20rendered%20images%20with%20perfect%20lighting%20and%20materials.%20The%20artist%20is%20in%20a%20professional%20studio%20environment%20with%20calibrated%20monitors%20displaying%20the%20final%20artwork.%20There%20might%20be%20multiple%20renders%20showing%20different%20angles%20or%20lighting%20scenarios%20of%20the%20same%20model.%20The%20scene%20captures%20the%20satisfaction%20of%20completing%20a%20polished%203D%20project.&width=400&height=300&seq=process5&orientation=landscape"
-                alt="Render ve Teslimat"
-                class="rounded-lg shadow-lg w-full"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Testimonials Section -->
-    <section class="py-16 md:py-24 bg-gray-900">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12 md:mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4 heading text-white">
-            Müşteri Yorumları
-          </h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">
-            Müşterilerimin deneyimleri ve geri bildirimleri. Kaliteli iş ve
-            profesyonel hizmet anlayışım ile müşteri memnuniyetini en üst
-            seviyede tutuyorum.
-          </p>
-        </div>
-        <div class="relative">
-          <div
-            class="testimonial-slider flex overflow-x-auto pb-8 -mx-4 px-4 space-x-4 md:space-x-6 hide-scrollbar"
-          >
-            <!-- Testimonial 1 -->
-            <div
-              class="testimonial-slide min-w-[280px] sm:min-w-[300px] md:min-w-[400px] bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg flex-shrink-0"
-            >
-              <div class="flex items-center mb-6">
-                <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                </div>
-                <div class="text-gray-400 ml-2">5.0</div>
-              </div>
-              <p class="text-gray-300 mb-6">
-                "Ahmet'in çalışmaları gerçekten etkileyici. Oyunumuz için
-                ihtiyaç duyduğumuz karakter modellerini mükemmel bir şekilde
-                hayata geçirdi. Detaylara olan dikkati ve profesyonel yaklaşımı
-                ile beklentilerimizin ötesine geçti."
-              </p>
-              <div class="flex items-center">
-                <div
-                  class="w-12 h-12 bg-gray-700 rounded-full overflow-hidden mr-4"
-                >
-                  <img
-                    src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20male%20game%20developer%20or%20creative%20director%20with%20a%20friendly%20expression.%20The%20photo%20should%20be%20a%20close-up%20portrait%20style%20with%20good%20lighting%20and%20a%20neutral%20background.%20The%20person%20should%20look%20like%20a%20business%20professional%20in%20the%20creative%20industry%2C%20wearing%20smart%20casual%20attire.&width=100&height=100&seq=test1&orientation=squarish"
-                    alt="Müşteri"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <div class="font-medium text-white">Mehmet Kaya</div>
-                  <div class="text-gray-400 text-sm">
-                    Oyun Geliştirici, Pixel Games
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Testimonial 2 -->
-            <div
-              class="testimonial-slide min-w-[280px] sm:min-w-[300px] md:min-w-[400px] bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg flex-shrink-0"
-            >
-              <div class="flex items-center mb-6">
-                <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                </div>
-                <div class="text-gray-400 ml-2">5.0</div>
-              </div>
-              <p class="text-gray-300 mb-6">
-                "Mimari görselleştirme projemiz için Ahmet ile çalışmak harika
-                bir deneyimdi. Vizyonumuzu tam olarak anladı ve fotorealistik
-                renderlar ile projemizi müşterilerimize sunmamıza yardımcı oldu.
-                Kesinlikle tekrar çalışacağız."
-              </p>
-              <div class="flex items-center">
-                <div
-                  class="w-12 h-12 bg-gray-700 rounded-full overflow-hidden mr-4"
-                >
-                  <img
-                    src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20female%20architect%20or%20interior%20designer%20with%20a%20confident%20expression.%20The%20photo%20should%20be%20a%20close-up%20portrait%20style%20with%20good%20lighting%20and%20a%20neutral%20background.%20The%20person%20should%20look%20like%20a%20business%20professional%20in%20the%20design%20industry%2C%20wearing%20smart%20professional%20attire.&width=100&height=100&seq=test2&orientation=squarish"
-                    alt="Müşteri"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <div class="font-medium text-white">Ayşe Demir</div>
-                  <div class="text-gray-400 text-sm">
-                    Mimar, Modern Yapı Tasarım
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Testimonial 3 -->
-            <div
-              class="testimonial-slide min-w-[280px] sm:min-w-[300px] md:min-w-[400px] bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg flex-shrink-0"
-            >
-              <div class="flex items-center mb-6">
-                <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-half-fill"></i>
-                </div>
-                <div class="text-gray-400 ml-2">4.5</div>
-              </div>
-              <p class="text-gray-300 mb-6">
-                "Reklam kampanyamız için ihtiyaç duyduğumuz 3D modeller
-                konusunda Ahmet bize büyük destek oldu. Hızlı çalışması ve
-                kaliteli sonuçlar üretmesi ile projemizi zamanında tamamlamamızı
-                sağladı. İşbirliğimizden çok memnun kaldık."
-              </p>
-              <div class="flex items-center">
-                <div
-                  class="w-12 h-12 bg-gray-700 rounded-full overflow-hidden mr-4"
-                >
-                  <img
-                    src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20male%20marketing%20director%20or%20creative%20agency%20executive%20with%20a%20friendly%20expression.%20The%20photo%20should%20be%20a%20close-up%20portrait%20style%20with%20good%20lighting%20and%20a%20neutral%20background.%20The%20person%20should%20look%20like%20a%20business%20professional%20in%20the%20advertising%20industry%2C%20wearing%20business%20casual%20attire.&width=100&height=100&seq=test3&orientation=squarish"
-                    alt="Müşteri"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <div class="font-medium text-white">Burak Yılmaz</div>
-                  <div class="text-gray-400 text-sm">
-                    Kreatif Direktör, Nova Reklam
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Testimonial 4 -->
-            <div
-              class="testimonial-slide min-w-[280px] sm:min-w-[300px] md:min-w-[400px] bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg flex-shrink-0"
-            >
-              <div class="flex items-center mb-6">
-                <div class="text-yellow-400 flex">
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                  <i class="ri-star-fill"></i>
-                </div>
-                <div class="text-gray-400 ml-2">5.0</div>
-              </div>
-              <p class="text-gray-300 mb-6">
-                "Ahmet'in 3D modelleme konusundaki uzmanlığı ve yaratıcılığı
-                sayesinde animasyon projemiz için harika karakterler elde ettik.
-                Revizyon taleplerimize hızlı yanıt vermesi ve çözüm odaklı
-                yaklaşımı ile çalışma sürecimiz çok verimli geçti."
-              </p>
-              <div class="flex items-center">
-                <div
-                  class="w-12 h-12 bg-gray-700 rounded-full overflow-hidden mr-4"
-                >
-                  <img
-                    src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20female%20animation%20director%20or%20film%20producer%20with%20a%20creative%20expression.%20The%20photo%20should%20be%20a%20close-up%20portrait%20style%20with%20good%20lighting%20and%20a%20neutral%20background.%20The%20person%20should%20look%20like%20a%20professional%20in%20the%20animation%20industry%2C%20wearing%20stylish%20but%20professional%20attire.&width=100&height=100&seq=test4&orientation=squarish"
-                    alt="Müşteri"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <div class="font-medium text-white">Zeynep Aksoy</div>
-                  <div class="text-gray-400 text-sm">
-                    Animasyon Direktörü, Dreamworks
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-center mt-8 space-x-2">
-            <button
-              class="w-3 h-3 rounded-full bg-primary cursor-pointer"
-            ></button>
-            <button
-              class="w-3 h-3 rounded-full bg-gray-600 cursor-pointer"
-            ></button>
-            <button
-              class="w-3 h-3 rounded-full bg-gray-600 cursor-pointer"
-            ></button>
-            <button
-              class="w-3 h-3 rounded-full bg-gray-600 cursor-pointer"
-            ></button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- FAQ Section -->
-    <section class="py-16 md:py-24 bg-gray-800">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12 md:mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4 heading text-white">
-            Sıkça Sorulan Sorular
-          </h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">
-            3D modelleme hizmetlerim hakkında en çok sorulan sorular ve
-            cevapları. Başka sorularınız varsa benimle iletişime geçmekten
-            çekinmeyin.
-          </p>
-        </div>
-        <div class="max-w-3xl mx-auto space-y-4 md:space-y-6">
-          <!-- FAQ Item 1 -->
-          <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-            <button
-              class="faq-toggle w-full flex justify-between items-center p-4 md:p-6 text-left focus:outline-none cursor-pointer"
-            >
-              <span class="text-base md:text-lg font-medium text-white"
-                >Bir 3D model projesi ne kadar sürer?</span
-              >
-              <i
-                class="ri-arrow-down-s-line text-gray-400 text-xl transition-transform"
-              ></i>
-            </button>
-            <div class="faq-content hidden px-4 md:px-6 pb-4 md:pb-6">
-              <p class="text-gray-300">
-                Proje süresi, modelin karmaşıklığına, detay seviyesine ve
-                kapsamına bağlı olarak değişir. Basit bir prop veya obje 2-3 gün
-                içinde tamamlanabilirken, detaylı bir karakter modeli veya
-                kapsamlı bir mimari görselleştirme 2-4 hafta sürebilir. Her
-                proje için size özel bir zaman çizelgesi oluşturuyorum.
-              </p>
-            </div>
-          </div>
-          <!-- FAQ Item 2 -->
-          <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-            <button
-              class="faq-toggle w-full flex justify-between items-center p-4 md:p-6 text-left focus:outline-none cursor-pointer"
-            >
-              <span class="text-base md:textlg font-medium text-white"
-                >Hangi dosya formatlarında teslimat yapıyorsunuz?</span
-              >
-              <i
-                class="ri-arrow-down-s-line text-gray-400 text-xl transition-transform"
-              ></i>
-            </button>
-            <div class="faq-content hidden px-4 md:px-6 pb-4 md:pb-6">
-              <p class="text-gray-300">
-                Projeleriniz için endüstri standardı dosya formatlarında
-                teslimat yapıyorum. Blender (.blend) kaynak dosyalarının yanı
-                sıra, FBX, OBJ, GLTF, DAE (Collada) gibi yaygın kullanılan
-                formatlarda export edebiliyorum. Tekstürler için PNG, JPG, TGA,
-                EXR formatlarını kullanıyorum. Özel format gereksinimleriniz
-                varsa, bunları da karşılayabilirim.
-              </p>
-            </div>
-          </div>
-          <!-- FAQ Item 3 -->
-          <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-            <button
-              class="faq-toggle w-full flex justify-between items-center p-4 md:p-6 text-left focus:outline-none cursor-pointer"
-            >
-              <span class="text-base md:text-lg font-medium text-white"
-                >Revizyon politikanız nedir?</span
-              >
-              <i
-                class="ri-arrow-down-s-line text-gray-400 text-xl transition-transform"
-              ></i>
-            </button>
-            <div class="faq-content hidden px-4 md:px-6 pb-4 md:pb-6">
-              <p class="text-gray-300">
-                Her projede, anlaşılan kapsam dahilinde 2-3 revizyon turu
-                sunuyorum. Projenin başlangıcında belirlenen gereksinimlere göre
-                yapılan revizyonlar bu kapsamdadır. Proje kapsamını değiştiren
-                büyük revizyonlar için ek ücret talep edilebilir. Amacım her
-                zaman müşteri memnuniyeti olduğu için, makul revizyon
-                taleplerinizi karşılamak için elimden geleni yapıyorum.
-              </p>
-            </div>
-          </div>
-          <!-- FAQ Item 4 -->
-          <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-            <button
-              class="faq-toggle w-full flex justify-between items-center p-4 md:p-6 text-left focus:outline-none cursor-pointer"
-            >
-              <span class="text-base md:text-lg font-medium text-white"
-                >Ödeme koşullarınız nelerdir?</span
-              >
-              <i
-                class="ri-arrow-down-s-line text-gray-400 text-xl transition-transform"
-              ></i>
-            </button>
-            <div class="faq-content hidden px-4 md:px-6 pb-4 md:pb-6">
-              <p class="text-gray-300">
-                Standart ödeme planım, proje başlangıcında %50 ön ödeme ve proje
-                tamamlandığında %50 son ödeme şeklindedir. Büyük projeler için
-                ara ödemeler de düzenlenebilir. Ödeme yöntemleri arasında banka
-                havalesi, kredi kartı ve PayPal bulunmaktadır. Her proje için
-                resmi bir sözleşme ve fatura düzenliyorum.
-              </p>
-            </div>
-          </div>
-          <!-- FAQ Item 5 -->
-          <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden">
-            <button
-              class="faq-toggle w-full flex justify-between items-center p-4 md:p-6 text-left focus:outline-none cursor-pointer"
-            >
-              <span class="text-base md:text-lg font-medium text-white"
-                >3D modelleriniz oyun motorlarıyla uyumlu mu?</span
-              >
-              <i
-                class="ri-arrow-down-s-line text-gray-400 text-xl transition-transform"
-              ></i>
-            </button>
-            <div class="faq-content hidden px-4 md:px-6 pb-4 md:pb-6">
-              <p class="text-gray-300">
-                Evet, modellerimi Unity, Unreal Engine, Godot gibi popüler oyun
-                motorlarıyla uyumlu olacak şekilde hazırlıyorum. Optimizasyon,
-                uygun poligon sayısı, UV haritaları ve PBR malzemeler gibi oyun
-                varlıkları için gerekli tüm standartları göz önünde
-                bulunduruyorum. Belirli bir oyun motoru için özel
-                gereksinimleriniz varsa, bunları da karşılayabilirim.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-gray-900">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12 md:mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4 heading text-white">
-            İletişim
-          </h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">
-            Projeleriniz için teklif almak veya sorularınız için benimle
-            iletişime geçebilirsiniz. En kısa sürede size dönüş yapacağım.
-          </p>
-        </div>
-        <div class="flex flex-col lg:flex-row gap-8 md:gap-12">
-          <div class="lg:w-1/2">
-            <form class="space-y-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label for="name" class="block text-gray-300 font-medium mb-2"
-                    >Adınız</label
-                  >
-                  <input
-                    type="text"
-                    id="name"
-                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white"
-                    placeholder="Adınız Soyadınız"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="email"
-                    class="block text-gray-300 font-medium mb-2"
-                    >E-posta</label
-                  >
-                  <input
-                    type="email"
-                    id="email"
-                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white"
-                    placeholder="ornek@mail.com"
-                  />
-                </div>
-              </div>
-              <div>
-                <label
-                  for="subject"
-                  class="block text-gray-300 font-medium mb-2"
-                  >Konu</label
-                >
-                <input
-                  type="text"
-                  id="subject"
-                  class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white"
-                  placeholder="Mesajınızın konusu"
-                />
-              </div>
-              <div>
-                <label
-                  for="message"
-                  class="block text-gray-300 font-medium mb-2"
-                  >Mesaj</label
-                >
-                <textarea
-                  id="message"
-                  rows="6"
-                  class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white"
-                  placeholder="Proje detaylarınızı veya sorularınızı buraya yazabilirsiniz..."
-                ></textarea>
-              </div>
-              <div>
-                <label class="block text-gray-300 font-medium mb-2"
-                  >Proje Türü</label
-                >
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div class="flex items-center">
-                    <div
-                      class="custom-checkbox cursor-pointer"
-                      data-value="character"
-                    >
-                      <i class="ri-check-line"></i>
-                    </div>
-                    <label class="ml-2 text-gray-300">Karakter Modelleme</label>
-                  </div>
-                  <div class="flex items-center">
-                    <div
-                      class="custom-checkbox cursor-pointer"
-                      data-value="environment"
-                    >
-                      <i class="ri-check-line"></i>
-                    </div>
-                    <label class="ml-2 text-gray-300">Çevre Tasarımı</label>
-                  </div>
-                  <div class="flex items-center">
-                    <div
-                      class="custom-checkbox cursor-pointer"
-                      data-value="architecture"
-                    >
-                      <i class="ri-check-line"></i>
-                    </div>
-                    <label class="ml-2 text-gray-300"
-                      >Mimari Görselleştirme</label
-                    >
-                  </div>
-                  <div class="flex items-center">
-                    <div
-                      class="custom-checkbox cursor-pointer"
-                      data-value="other"
-                    >
-                      <i class="ri-check-line"></i>
-                    </div>
-                    <label class="ml-2 text-gray-300">Diğer</label>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <label class="block text-gray-300 font-medium mb-2"
-                  >Bütçe Aralığı</label
-                >
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-gray-400" id="budgetValue">₺5,000</span>
-                  <span class="text-gray-400">₺1,000 - ₺10,000+</span>
-                </div>
-                <input
-                  type="range"
-                  min="1000"
-                  max="10000"
-                  step="500"
-                  value="5000"
-                  class="w-full h-2 bg-gray-700 rounded-full appearance-none cursor-pointer"
-                  id="budgetSlider"
-                />
-              </div>
-              <div class="flex items-center">
-                <div
-                  class="custom-checkbox cursor-pointer"
-                  id="privacyCheckbox"
-                  data-value="privacy"
-                >
-                  <i class="ri-check-line"></i>
-                </div>
-                <label class="ml-2 text-gray-300"
-                  >Kişisel verilerimin işlenmesini kabul ediyorum</label
-                >
-              </div>
-              <button
-                type="submit"
-                class="w-full bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-opacity-90 transition-all shadow-lg whitespace-nowrap cursor-pointer"
-              >
-                Mesaj Gönder
-              </button>
-            </form>
-          </div>
-          <div class="lg:w-1/2">
-            <div
-              class="bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg h-full border border-gray-700"
-            >
-              <h3 class="text-xl md:text-2xl font-bold mb-6 text-white">
-                İletişim Bilgileri
-              </h3>
-              <div class="space-y-6 mb-8">
-                <div class="flex items-start">
-                  <div
-                    class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mr-4"
-                  >
-                    <i class="ri-mail-line text-primary text-xl"></i>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-white mb-1">E-posta</h4>
-                    <p class="text-gray-400">info@ahmetyilmaz3d.com</p>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <div
-                    class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mr-4"
-                  >
-                    <i class="ri-phone-line text-primary text-xl"></i>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-white mb-1">Telefon</h4>
-                    <p class="text-gray-400">+90 (555) 123 4567</p>
-                  </div>
-                </div>
-                <div class="flex items-start">
-                  <div
-                    class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mr-4"
-                  >
-                    <i class="ri-map-pin-line text-primary text-xl"></i>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-white mb-1">Adres</h4>
-                    <p class="text-gray-400">Levent, İstanbul, Türkiye</p>
-                  </div>
-                </div>
-              </div>
-              <h4 class="font-medium text-white mb-4">Sosyal Medya</h4>
-              <div class="flex space-x-4 mb-8">
-                <a
-                  href="https://instagram.com/"
-                  target="_blank"
-                  rel="noopener"
-                  class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition-all cursor-pointer"
-                  aria-label="Instagram"
-                >
-                  <i class="ri-instagram-line text-white"></i>
-                </a>
-                <a
-                  href="https://behance.net/"
-                  target="_blank"
-                  rel="noopener"
-                  class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition-all cursor-pointer"
-                  aria-label="Behance"
-                >
-                  <i class="ri-behance-line text-white"></i>
-                </a>
-                <a
-                  href="https://www.artstation.com/"
-                  target="_blank"
-                  rel="noopener"
-                  class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition-all cursor-pointer"
-                  aria-label="ArtStation"
-                >
-                  <i class="ri-artstation-line text-white"></i>
-                </a>
-                <a
-                  href="https://linkedin.com/"
-                  target="_blank"
-                  rel="noopener"
-                  class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition-all cursor-pointer"
-                  aria-label="LinkedIn"
-                >
-                  <i class="ri-linkedin-line text-white"></i>
-                </a>
-                <a
-                  href="https://github.com/"
-                  target="_blank"
-                  rel="noopener"
-                  class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition-all cursor-pointer"
-                  aria-label="GitHub"
-                >
-                  <i class="ri-github-line text-white"></i>
-                </a>
-                <a
-                  href="https://twitter.com/"
-                  target="_blank"
-                  rel="noopener"
-                  class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition-all cursor-pointer"
-                  aria-label="X"
-                >
-                  <i class="ri-twitter-x-line text-white"></i>
-                </a>
-              </div>
-              <h4 class="font-medium text-white mb-4">Çalışma Saatleri</h4>
-              <div class="space-y-2 mb-8">
-                <div class="flex justify-between">
-                  <span class="text-gray-400">Pazartesi - Cuma:</span>
-                  <span class="text-gray-200">09:00 - 18:00</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-gray-400">Cumartesi:</span>
-                  <span class="text-gray-200">10:00 - 15:00</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-gray-400">Pazar:</span>
-                  <span class="text-gray-200">Kapalı</span>
-                </div>
-              </div>
-              <div class="bg-gray-700 p-4 rounded-lg">
-                <p class="text-gray-300">
-                  <span class="font-medium">Not:</span> Genellikle 24 saat
-                  içinde dönüş yapıyorum. Acil projeleriniz için lütfen telefon
-                  ile iletişime geçin.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-12 md:pt-16 pb-6 md:pb-8">
-      <div class="container mx-auto px-4">
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 md:mb-12"
-        >
-          <div>
-            <a
-              href="#"
-              class="text-2xl font-['Pacifico'] mb-4 md:mb-6 inline-block"
-              >Face of Dreams</a
-            >
-            <p class="text-gray-400 mb-6">
-              Profesyonel 3D modelleme ve görselleştirme hizmetleri. Blender ile
-              hayallerinizi gerçeğe dönüştürüyorum.
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="#"
-                class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-gray-700 transition-all cursor-pointer"
-              >
-                <i class="ri-instagram-line"></i>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-gray-700 transition-all cursor-pointer"
-              >
-                <i class="ri-behance-line"></i>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-gray-700 transition-all cursor-pointer"
-              >
-                <i class="ri-artstation-line"></i>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-gray-700 transition-all cursor-pointer"
-              >
-                <i class="ri-linkedin-line"></i>
-              </a>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold mb-4 md:mb-6">Hızlı Bağlantılar</h3>
-            <ul class="space-y-3">
-              <li>
-                <a
-                  href="#home"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Ana Sayfa</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#about"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Hakkımda</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#portfolio"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Portfolyo</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#services"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Hizmetler</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >İletişim</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold mb-4 md:mb-6">Hizmetler</h3>
-            <ul class="space-y-3">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Karakter Modelleme</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Mimari Görselleştirme</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Oyun Varlıkları</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Ürün Görselleştirme</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Animasyon</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold mb-4 md:mb-6">İletişim</h3>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <i class="ri-mail-line mr-3 mt-1"></i>
-                <span class="text-gray-400">info@ahmetyilmaz3d.com</span>
-              </li>
-              <li class="flex items-start">
-                <i class="ri-phone-line mr-3 mt-1"></i>
-                <span class="text-gray-400">+90 (555) 123 4567</span>
-              </li>
-              <li class="flex items-start">
-                <i class="ri-map-pin-line mr-3 mt-1"></i>
-                <span class="text-gray-400">Levent, İstanbul, Türkiye</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <hr class="border-gray-800 mb-6 md:mb-8" />
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <div class="text-gray-500 mb-4 md:mb-0">
-            &copy; 2025 Vniverse77 3D & S.E. All rights reserved.
-          </div>
-          <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-            <a href="#" class="text-gray-500 hover:text-white transition-colors"
-              >Gizlilik Politikası</a
-            >
-            <a href="#" class="text-gray-500 hover:text-white transition-colors"
-              >Kullanım Şartları</a
-            >
-            <a href="#" class="text-gray-500 hover:text-white transition-colors"
-              >Çerez Politikası</a
-            >
-          </div>
+    <footer class="footer">
+      <div class="container" style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
+        <p>&copy; 2025 Face of Dreams. All rights reserved.</p>
+        <div style="display:flex;gap:1rem;">
+          <a href="https://github.com/" target="_blank" style="color:#f3f4f6;text-decoration:none;font-size:1.5rem;">
+            <i class="ri-github-line"></i> GitHub
+          </a>
+          <a href="https://twitter.com/" target="_blank" style="color:#f3f4f6;text-decoration:none;font-size:1.5rem;">
+            <i class="ri-twitter-line"></i> Twitter
+          </a>
+          <a href="https://spotify.com/" target="_blank" style="color:#f3f4f6;text-decoration:none;font-size:1.5rem;">
+            <i class="ri-spotify-line"></i> Spotify
+          </a>
+          <a href="https://youtube.com/" target="_blank" style="color:#f3f4f6;text-decoration:none;font-size:1.5rem;">
+            <i class="ri-youtube-line"></i> YouTube
+          </a>
         </div>
       </div>
     </footer>
-    <!-- Back to Top Button -->
-    <a
-      href="#"
-      id="backToTop"
-      class="fixed bottom-6 right-6 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg opacity-0 invisible transition-all cursor-pointer"
-    >
-      <i class="ri-arrow-up-line text-xl"></i>
-    </a>
-    <!-- Coution there is Javascript script her ============= -->
-    <script id="headerScroll">
+    <div class="notice" id="devNotice">
+      <span>⚠️ This website is currently under development. Some features may not work as expected.</span>
+      <button onclick="document.getElementById('devNotice').style.display='none'">Close</button>
+    </div>
+    <script>
+      // Allow closing the development notice
       document.addEventListener("DOMContentLoaded", function () {
-        const header = document.getElementById("header");
-        const backToTop = document.getElementById("backToTop");
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 50) {
-            header.classList.add("bg-gray-900", "shadow-md");
-            header.classList.remove("bg-transparent");
-            // Change text color in header
-            const navLinks = header.querySelectorAll("nav a");
-            navLinks.forEach((link) => {
-              link.classList.remove("text-white");
-              link.classList.add("text-gray-200");
-            });
-            // Change logo color
-            const logo = header.querySelector(".font-['Pacifico']");
-            logo.classList.remove("text-white");
-            logo.classList.add("text-primary");
-            // Show back to top button
-            backToTop.classList.remove("opacity-0", "invisible");
-            backToTop.classList.add("opacity-100", "visible");
-          } else {
-            header.classList.remove("bg-gray-900", "shadow-md");
-            header.classList.add("bg-transparent");
-            // Change text color back
-            const navLinks = header.querySelectorAll("nav a");
-            navLinks.forEach((link) => {
-              link.classList.add("text-white");
-              link.classList.remove("text-gray-200");
-            });
-            // Change logo color back
-            const logo = header.querySelector(".font-['Pacifico']");
-            logo.classList.add("text-white");
-            logo.classList.remove("text-primary");
-            // Hide back to top button
-            backToTop.classList.add("opacity-0", "invisible");
-            backToTop.classList.remove("opacity-100", "visible");
-          }
-        });
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-        const mobileMenu = document.getElementById("mobileMenu");
-        mobileMenuBtn.addEventListener("click", function () {
-          mobileMenu.classList.toggle("hidden");
-        });
-        // Back to top button click
-        backToTop.addEventListener("click", function (e) {
-          e.preventDefault();
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
+        const devNotice = document.getElementById("devNotice");
+        const closeBtn = devNotice.querySelector("button");
+        if (devNotice && closeBtn) {
+          closeBtn.addEventListener("click", function () {
+            devNotice.style.display = "none";
           });
-        });
+        }
       });
     </script>
-    <script id="portfolioFilter">
-      document.addEventListener("DOMContentLoaded", function () {
-        const filterBtns = document.querySelectorAll(".filter-btn");
-        const portfolioItems = document.querySelectorAll(".portfolio-item");
-        filterBtns.forEach((btn) => {
-          btn.addEventListener("click", function () {
-            // Remove active class from all buttons
-            filterBtns.forEach((b) => {
-              b.classList.remove("active", "bg-primary", "text-white");
-              b.classList.add("bg-gray-700", "text-gray-200");
-            });
-            // Add active class to clicked button
-            this.classList.add("active", "bg-primary", "text-white");
-            this.classList.remove("bg-gray-700", "text-gray-200");
-            const filter = this.getAttribute("data-filter");
-            portfolioItems.forEach((item) => {
-              if (filter === "all" || item.getAttribute("data-category") === filter) {
-                item.style.display = "block";
-              } else {
-                item.style.display = "none";
-              }
-            });
-          });
-        });
-      });
-    </script>
-    <script id="sliderControls">
-      document.addEventListener("DOMContentLoaded", function () {
-        // Rotation slider
-        const rotationSlider = document.getElementById("rotationSlider");
-        const rotationValue = document.getElementById("rotationValue");
-        rotationSlider.addEventListener("input", function () {
-          rotationValue.textContent = this.value + "°";
-        });
-        // Zoom slider
-        const zoomSlider = document.getElementById("zoomSlider");
-        const zoomValue = document.getElementById("zoomValue");
-        zoomSlider.addEventListener("input", function () {
-          zoomValue.textContent = this.value + "%";
-        });
-        // Budget slider
-        const budgetSlider = document.getElementById("budgetSlider");
-        const budgetValue = document.getElementById("budgetValue");
-        budgetSlider.addEventListener("input", function () {
-          const value = parseInt(this.value);
-          budgetValue.textContent = "₺" + value.toLocaleString();
-        });
-      });
-    </script>
-    <script id="faqToggle">
-      document.addEventListener("DOMContentLoaded", function () {
-        const faqToggles = document.querySelectorAll(".faq-toggle");
-        faqToggles.forEach((toggle) => {
-          toggle.addEventListener("click", function () {
-            const content = this.nextElementSibling;
-            const icon = this.querySelector("i");
-            // Toggle content visibility
-            content.classList.toggle("hidden");
-            // Rotate icon
-            if (content.classList.contains("hidden")) {
-              icon.style.transform = "rotate(0deg)";
-            } else {
-              icon.style.transform = "rotate(180deg)";
-            }
-          });
-        });
-      });
-    </script>
-    <script id="customFormElements">
-      document.addEventListener("DOMContentLoaded", function () {
-        // Custom checkboxes
-        const customCheckboxes = document.querySelectorAll(".custom-checkbox");
-        customCheckboxes.forEach((checkbox) => {
-          checkbox.addEventListener("click", function () {
-            const value = this.getAttribute("data-value");
-            // If it's the privacy checkbox, just toggle it
-            if (value === "privacy") {
-              this.classList.toggle("checked");
-              return;
-            }
-            // For project type, allow multiple selection
-            this.classList.toggle("checked");
-          });
-        });
-        // Theme switch
-        const themeSwitch = document.getElementById("themeSwitch");
-        const body = document.body;
-        themeSwitch.addEventListener("click", function () {
-          this.classList.toggle("dark");
-          body.classList.toggle("dark-mode");
-        });
-      });
-    </script>
-    <script id="skillsAnimation">
-      document.addEventListener("DOMContentLoaded", function () {
-        // Animate skill bars when they come into view
-        const skillBars = document.querySelectorAll(".skill-progress");
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.style.width = entry.target.parentElement.style.width;
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.5 },
-        );
-        skillBars.forEach((bar) => {
-          // Initially set width to 0
-          const targetWidth = bar.style.width;
-          bar.style.width = "0";
-          // Observe the bar
-          observer.observe(bar);
-        });
-      });
-    </script>
-    <!-- Code is finally ending-------------- -->
   </body>
 </html>
