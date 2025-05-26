@@ -28,7 +28,6 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" type="image/png" href="ubuntu-logo.png">
     <link
       href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
       rel="stylesheet"
@@ -235,15 +234,6 @@
     </style>
   </head>
   <body class="bg-[#0F172A] text-gray-200">
-    <!-- Begin dev notification overlay -->
-    <div id="devNotification" class="fixed inset-0 bg-black bg-opacity-90 z-[10000] flex flex-col justify-center items-center">
-      <div class="bg-[#1E293B] p-8 rounded-lg text-center max-w-md mx-4">
-        <h2 class="text-2xl font-bold text-white mb-4">Dev Notice</h2>
-        <p class="text-gray-300 mb-6">This site still under development. To continue please tap "Okay" button!</p>
-        <button id="devNotificationBtn" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition-all duration-300">Okay</button>
-      </div>
-    </div>
-    <!-- End dev notification overlay -->
     <div class="custom-cursor"></div>
     <div class="custom-cursor-follower"></div>
     <!-- Header -->
@@ -324,6 +314,14 @@
               >
             </div>
           </div>
+          <button
+            class="w-10 h-10 rounded-full flex items-center justify-center bg-[#1E293B]"
+            id="themeToggle"
+          >
+            <span class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-moon-line"></i>
+            </span>
+          </button>
           <button
             class="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-[#1E293B]"
             id="mobileMenuToggle"
@@ -444,7 +442,7 @@
         </div>
         <div class="mb-16">
           <h3 class="text-2xl font-semibold mb-8 gradient-text">
-            Software technologies
+            Yazılım Teknolojileri
           </h3>
           <div
             class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
@@ -459,7 +457,7 @@
                 <h4 class="text-lg font-medium">HTML/CSS</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Mastery</span>
+                <span class="text-gray-400">Uzmanlık</span>
                 <span>90%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -479,7 +477,7 @@
                 <h4 class="text-lg font-medium">JavaScript</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Mastery</span>
+                <span class="text-gray-400">Uzmanlık</span>
                 <span>85%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -499,7 +497,7 @@
                 <h4 class="text-lg font-medium">React</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Mastery</span>
+                <span class="text-gray-400">Uzmanlık</span>
                 <span>80%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -539,7 +537,7 @@
                 <h4 class="text-lg font-medium">SQL/NoSQL</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Mastery</span>
+                <span class="text-gray-400">Uzmanlık</span>
                 <span>70%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -559,7 +557,7 @@
                 <h4 class="text-lg font-medium">Git</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Mastery</span>
+                <span class="text-gray-400">Uzmanlık</span>
                 <span>85%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -579,7 +577,7 @@
                 <h4 class="text-lg font-medium">Flutter</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Mastery</span>
+                <span class="text-gray-400">Uzmanlık</span>
                 <span>65%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -599,7 +597,7 @@
                 <h4 class="text-lg font-medium">Python</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Mastery</span>
+                <span class="text-gray-400">Uzmanlık</span>
                 <span>60%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -613,7 +611,7 @@
         </div>
         <div>
           <h3 class="text-2xl font-semibold mb-8 gradient-text">
-            3D Modelling & art
+            3D Modelleme & Tasarım
           </h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-[#1E293B] rounded-lg p-6 card-hover">
@@ -628,7 +626,7 @@
               <div class="space-y-4">
                 <div>
                   <div class="mb-2 flex justify-between">
-                    <span class="text-gray-400">Modelling</span>
+                    <span class="text-gray-400">Modelleme</span>
                     <span>80%</span>
                   </div>
                   <div
@@ -679,7 +677,8 @@
               <div class="p-6">
                 <h4 class="text-lg font-medium mb-2">3D Modelleme Portföyü</h4>
                 <p class="text-gray-400 mb-4">
-                  Characters, environments, and objects created using Blender. I also have some projects:
+                  Karakterler, ortamlar ve ürün tasarımları dahil olmak üzere
+                  çeşitli 3D modelleme projelerim.
                 </p>
                 <a
                   href="#portfolio"
@@ -713,25 +712,25 @@
               class="px-4 sm:px-6 py-2 rounded-full bg-primary text-white whitespace-nowrap text-sm sm:text-base"
               data-filter="all"
             >
-              All
+              Tümü
             </button>
             <button
               class="px-4 sm:px-6 py-2 rounded-full text-gray-300 hover:text-white whitespace-nowrap text-sm sm:text-base"
               data-filter="web"
             >
-              Web development
+              Web Geliştirme
             </button>
             <button
               class="px-4 sm:px-6 py-2 rounded-full text-gray-300 hover:text-white whitespace-nowrap text-sm sm:text-base"
               data-filter="mobile"
             >
-              Mobil Application
+              Mobil Uygulama
             </button>
             <button
               class="px-4 sm:px-6 py-2 rounded-full text-gray-300 hover:text-white whitespace-nowrap text-sm sm:text-base"
               data-filter="3d"
             >
-              3D Modelling
+              3D Modelleme
             </button>
           </div>
         </div>
@@ -753,13 +752,15 @@
               <div
                 class="absolute top-4 right-4 bg-primary/90 text-white px-3 py-1 rounded-full text-sm"
               >
-                Web Development
+                Web Geliştirme
               </div>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-semibold mb-2">E-ticaret Platformu</h3>
               <p class="text-gray-400 mb-4">
-                A comprehensive e-commerce solution developed using React and Node.js. It includes payment integration, user management, and inventory tracking.
+                React ve Node.js kullanılarak geliştirilen tam kapsamlı bir
+                e-ticaret çözümü. Ödeme entegrasyonu, kullanıcı yönetimi ve
+                envanter takibi içerir.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span
@@ -783,7 +784,7 @@
                 class="text-primary hover:text-primary/80 inline-flex items-center project-details-btn"
                 data-project="project1"
               >
-                <span>See details</span>
+                <span>Detayları Gör</span>
                 <span class="w-5 h-5 flex items-center justify-center ml-1">
                   <i class="ri-arrow-right-line"></i>
                 </span>
@@ -797,52 +798,44 @@
           >
             <div class="relative">
               <img
-              src="https://readdy.ai/api/search-image?query=Mobile%20fitness%20app%20interface%20with%20dark%20theme%2C%20showing%20workout%20tracking%20screens%2C%20user%20statistics%20with%20graphs%2C%20clean%20UI%20with%20purple%20accent%20colors%2C%20professional%20mobile%20app%20development%20project%20screenshot%20on%20smartphone&width=600&height=400&seq=project2&orientation=landscape"
-              alt="Fitness Tracking App"
-              class="w-full h-56 object-cover"
+                src="https://readdy.ai/api/search-image?query=Mobile%20fitness%20app%20interface%20with%20dark%20theme%2C%20showing%20workout%20tracking%20screens%2C%20user%20statistics%20with%20graphs%2C%20clean%20UI%20with%20purple%20accent%20colors%2C%20professional%20mobile%20app%20development%20project%20screenshot%20on%20smartphone&width=600&height=400&seq=project2&orientation=landscape"
+                alt="Fitness Takip Uygulaması"
+                class="w-full h-56 object-cover"
               />
               <div
-              class="absolute top-4 right-4 bg-secondary/90 text-white px-3 py-1 rounded-full text-sm"
+                class="absolute top-4 right-4 bg-secondary/90 text-white px-3 py-1 rounded-full text-sm"
               >
-              Mobile Application
+                Mobil Uygulama
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Fitness Tracking App</h3>
+              <h3 class="text-xl font-semibold mb-2">
+                Fitness Takip Uygulaması
+              </h3>
               <p class="text-gray-400 mb-4">
-              A comprehensive fitness application developed with Flutter,
-              allowing users to track their workouts, manage their nutrition
-              plans and view progress graphs.
+                Flutter ile geliştirilen, kullanıcıların antrenmanlarını takip
+                edebileceği, beslenme planlarını yönetebileceği ve ilerleme
+                grafiklerini görebileceği kapsamlı bir fitness uygulaması.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
-              <span
-                class="bg-[#0F172A] text-gray-300 px-3 py-1 rounded-full text-xs"
-                >Flutter</span
-              >
-              <span
-                class="bg-[#0F172A] text-gray-300 px-3 py-1 rounded-full text-xs"
-                >Firebase</span
-              >
-              <span
-                class="bg-[#0F172A] text-gray-300 px-3 py-1 rounded-full text-xs"
-                >Health API</span
-              >
+                <span
+                  class="bg-[#0F172A] text-gray-300 px-3 py-1 rounded-full text-xs"
+                  >Flutter</span
+                >
+                <span
+                  class="bg-[#0F172A] text-gray-300 px-3 py-1 rounded-full text-xs"
+                  >Firebase</span
+                >
+                <span
+                  class="bg-[#0F172A] text-gray-300 px-3 py-1 rounded-full text-xs"
+                  >Health API</span
+                >
               </div>
-              <button
-              class="text-secondary hover:text-secondary/80 inline-flex items-center project-details-btn"
-              data-project="project2"
-              >
-              <span>See details</span>
-              <span class="w-5 h-5 flex items-center justify-center ml-1">
-                <i class="ri-arrow-right-line"></i>
-              </span>
-              </button>
-            </div>
               <button
                 class="text-secondary hover:text-secondary/80 inline-flex items-center project-details-btn"
                 data-project="project2"
               >
-                <span>See details</span>
+                <span>Detayları Gör</span>
                 <span class="w-5 h-5 flex items-center justify-center ml-1">
                   <i class="ri-arrow-right-line"></i>
                 </span>
@@ -863,17 +856,17 @@
               <div
                 class="absolute top-4 right-4 bg-primary/90 text-white px-3 py-1 rounded-full text-sm"
               >
-                3D Modelling
+                3D Modelleme
               </div>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-semibold mb-2">
-                Sci-Fi Character designs
+                Sci-Fi Karakter Tasarımı
               </h3>
               <p class="text-gray-400 mb-4">
-                A detailed sci-fi character model designed using Blender and
-                created for a video game. Includes rigging and basic
-                animations.
+                Blender kullanılarak tasarlanan, bir video oyunu için
+                oluşturulmuş detaylı bir bilim kurgu karakter modeli. Rigging ve
+                temel animasyonlar içerir.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span
@@ -893,7 +886,7 @@
                 class="text-primary hover:text-primary/80 inline-flex items-center project-details-btn"
                 data-project="project3"
               >
-                <span>See details</span>
+                <span>Detayları Gör</span>
                 <span class="w-5 h-5 flex items-center justify-center ml-1">
                   <i class="ri-arrow-right-line"></i>
                 </span>
@@ -914,15 +907,15 @@
               <div
                 class="absolute top-4 right-4 bg-primary/90 text-white px-3 py-1 rounded-full text-sm"
               >
-                Web Development
+                Web Geliştirme
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Analitic Dashboard</h3>
+              <h3 class="text-xl font-semibold mb-2">Analitik Dashboard</h3>
               <p class="text-gray-400 mb-4">
-                An interactive dashboard that allows businesses to visualize
-                and analyze their data. Includes real-time data monitoring and
-                reporting features.
+                İşletmelerin verilerini görselleştirmelerine ve analiz
+                etmelerine olanak tanıyan interaktif bir dashboard. Gerçek
+                zamanlı veri izleme ve raporlama özellikleri içerir.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span
@@ -1008,14 +1001,6 @@
             <div class="relative">
               <img
                 src="https://readdy.ai/api/search-image?query=Futuristic%20interior%20architectural%20visualization%20rendered%20in%20Blender%2C%20modern%20minimalist%20space%20with%20holographic%20elements%2C%20cyberpunk%20style%20with%20purple%20and%20blue%20lighting%2C%20professional%203D%20modeling%20work%2C%20dark%20atmosphere%20with%20dramatic%20lighting&width=600&height=400&seq=project6&orientation=landscape"
-                alt="Mimari Görselleştirme"
-                class="w-full h-56 object-cover"
-              />
-              <div
-                class="absolute top-4 right-4 bg-primary/90 text-white px-3 py-1 rounded-full text-sm"
-              >
-                3D Modelleme
-              </div>
                 alt="Mimari Görselleştirme"
                 class="w-full h-56 object-cover"
               />
@@ -1659,7 +1644,7 @@
               id="closeModal"
             >
               <i class="ri-close-line text-xl"></i>
-                       </button>
+            </button>
           </div>
           <div id="modalContent">
             <!-- Content will be dynamically inserted here -->
@@ -2219,16 +2204,6 @@
           loadingBar.style.width = progress + "%";
         }, 200);
       });
-    </script>
-    <script>
-    // Hide devNotification overlay on button click
-    document.addEventListener("DOMContentLoaded", function(){
-      const devNotification = document.getElementById("devNotification");
-      const btn = document.getElementById("devNotificationBtn");
-      btn.addEventListener("click", function(){
-        devNotification.style.display = "none";
-      });
-    });
     </script>
   </body>
 </html>
