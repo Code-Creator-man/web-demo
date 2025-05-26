@@ -243,13 +243,13 @@
   </head>
   <body class="bg-[#0F172A] text-gray-200">
     <!-- Begin dev notification overlay -->
-    <!-- <div id="devNotification" class="fixed inset-0 bg-black bg-opacity-90 z-[10000] flex flex-col justify-center items-center">
+    <div id="devNotification" class="fixed inset-0 bg-black bg-opacity-90 z-[10000] flex flex-col justify-center items-center">
       <div class="bg-[#1E293B] p-8 rounded-lg text-center max-w-md mx-4">
         <h2 class="text-2xl font-bold text-white mb-4">Dev Notice</h2>
         <p class="text-gray-300 mb-6">The site is still under development. To continue please tap "Ok" button!</p>
         <button id="devNotificationBtn" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition-all duration-300">Ok</button>
       </div>
-    </div> -->
+    </div>
     <!-- End dev notification overlay -->
     <div class="custom-cursor"></div>
     <div class="custom-cursor-follower"></div>
@@ -262,7 +262,7 @@
         class="container mx-auto px-6 py-4 flex justify-between items-center"
       >
         <!-- Updated header logo size -->
-        <a href="#" class="logo">
+        <a href="#home" class="logo">
           <!-- Replace 'ubuntu-logo.png' with your PNG file path -->
           <img src="ubuntu-logo.png" alt="Header Logo" class="w-[69px] h-[69px]">
         </a>
@@ -1074,7 +1074,7 @@ You can get them here.
               <div id="githubContributions" class="w-full h-32"></div>
             </div>
             <a
-              href="https://github.com/Code-Creator-man/"
+              href="https://github.com/Code-Creator-man?tab=repositories"
               class="bg-[#0F172A] hover:bg-[#1E293B] text-white w-full py-2 rounded-button font-medium transition-all duration-300 flex items-center justify-center whitespace-nowrap"
             >
               <span class="w-5 h-5 flex items-center justify-center mr-2">
@@ -1915,13 +1915,13 @@ I will start. #Blender3D #Tutorial
         // Project details data
         const projectDetails = {
           project1: {
-            title: "E-ticaret Platformu",
+            title: "E-Commerce Web Site",
             description:
-              "React ve Node.js kullanılarak geliştirilen tam kapsamlı bir e-ticaret çözümü. Ödeme entegrasyonu, kullanıcı yönetimi ve envanter takibi içerir.",
+              "A comprehensive e-commerce solution developed using React and Node.js. Includes payment integration, user management, and inventory tracking.",
             challenge:
-              "Büyük ürün kataloğunu verimli bir şekilde yönetmek ve gerçek zamanlı stok takibi sağlamak en büyük zorluklardandı. Ayrıca, güvenli ödeme işlemleri ve kullanıcı verilerinin korunması için sağlam bir altyapı geliştirmek gerekiyordu.",
+              "Efficiently managing a large product catalog and ensuring real-time stock tracking were among the biggest challenges. Additionally, a robust infrastructure needed to be developed for secure payment processing and user data protection.",
             solution:
-              "MongoDB ile ölçeklenebilir bir veritabanı yapısı kurdum ve Redux ile karmaşık uygulama durumunu yönettim. Stripe API entegrasyonu ile güvenli ödeme işlemleri sağladım ve JWT tabanlı kimlik doğrulama sistemi ile kullanıcı verilerini korudum.",
+              "I established a scalable database structure with MongoDB and managed complex application state with Redux. I ensured secure payment transactions through Stripe API integration and protected user data with a JWT-based authentication system.",
             technologies: [
               "React",
               "Node.js",
@@ -1933,25 +1933,25 @@ I will start. #Blender3D #Tutorial
               "AWS S3",
             ],
             features: [
-              "Gelişmiş ürün filtreleme ve arama",
-              "Kullanıcı hesapları ve profil yönetimi",
-              "Sepet ve favoriler listesi",
-              "Güvenli ödeme işlemleri",
-              "Sipariş takibi",
-              "Admin paneli ve envanter yönetimi",
-              "Responsive tasarım",
+              "Advanced product filtering and search",
+              "User accounts and profile management",
+              "Shopping cart and wish list",
+              "Secure payment processing",
+              "Order tracking",
+              "Admin panel and inventory management",
+              "Responsive design",
             ],
             image:
               "https://readdy.ai/api/search-image?query=Modern%20e-commerce%20website%20interface%20with%20dark%20theme%2C%20showing%20product%20listings%20with%20minimalist%20design%2C%20clean%20UI%20with%20purple%20accent%20colors%2C%20professional%20web%20development%20project%20screenshot%2C%20high-tech%20feel&width=800&height=500&seq=project1detail&orientation=landscape",
           },
           project2: {
-            title: "Fitness Takip Uygulaması",
+            title: "Fitness Tracking Application",
             description:
-              "Flutter ile geliştirilen, kullanıcıların antrenmanlarını takip edebileceği, beslenme planlarını yönetebileceği ve ilerleme grafiklerini görebileceği kapsamlı bir fitness uygulaması.",
+              "A comprehensive fitness application developed with Flutter, allowing users to track their workouts, manage nutrition plans, and view progress graphs.",
             challenge:
-              "Farklı fitness aktivitelerini doğru bir şekilde izlemek, kullanıcıların ilerleme verilerini anlamlı bir şekilde görselleştirmek ve sağlık verileriyle entegrasyon sağlamak başlıca zorluklardı.",
+              "Accurately monitoring different fitness activities, meaningfully visualizing user progress data, and integrating with health data were the main challenges.",
             solution:
-              "Flutter'ın cross-platform özelliklerinden yararlanarak hem iOS hem de Android için tek bir kod tabanı geliştirdim. Firebase Firestore ile gerçek zamanlı veri senkronizasyonu sağladım ve sağlık API'leri ile entegrasyon kurdum.",
+              "I developed a single codebase for both iOS and Android by leveraging Flutter's cross-platform capabilities. I ensured real-time data synchronization with Firebase Firestore and established integration with health APIs.",
             technologies: [
               "Flutter",
               "Dart",
@@ -1962,25 +1962,25 @@ I will start. #Blender3D #Tutorial
               "Apple HealthKit",
             ],
             features: [
-              "Özelleştirilebilir antrenman planları",
-              "Beslenme takibi ve kalori hesaplama",
-              "İlerleme grafikleri ve istatistikler",
-              "Aktivite hatırlatıcıları",
-              "Sağlık verileri entegrasyonu",
-              "Sosyal paylaşım özellikleri",
-              "Offline kullanım desteği",
+              "Customizable workout plans",
+              "Nutrition tracking and calorie calculation",
+              "Progress graphs and statistics",
+              "Activity reminders",
+              "Health data integration",
+              "Social sharing features",
+              "Offline usage support",
             ],
             image:
               "https://readdy.ai/api/search-image?query=Mobile%20fitness%20app%20interface%20with%20dark%20theme%2C%20showing%20workout%20tracking%20screens%2C%20user%20statistics%20with%20graphs%2C%20clean%20UI%20with%20purple%20accent%20colors%2C%20professional%20mobile%20app%20development%20project%20screenshot%20on%20smartphone&width=800&height=500&seq=project2detail&orientation=landscape",
           },
           project3: {
-            title: "Sci-Fi Karakter Tasarımı",
+            title: "Sci-Fi Character Design",
             description:
-              "Blender kullanılarak tasarlanan, bir video oyunu için oluşturulmuş detaylı bir bilim kurgu karakter modeli. Rigging ve temel animasyonlar içerir.",
+              "A detailed sci-fi character model created for a video game, designed using Blender. Includes rigging and basic animations.",
             challenge:
-              "Yüksek poligon sayısını optimize ederek oyun motorunda verimli çalışacak bir model oluşturmak ve karakterin benzersiz özelliklerini koruyarak etkileyici bir görsel stil yakalamak gerekiyordu.",
+              "Optimizing the high polygon count to create a model that would run efficiently in a game engine, and achieving an impressive visual style while preserving the character's unique features were necessary.",
             solution:
-              "Sculpting tekniklerini kullanarak detaylı bir yüksek poligon model oluşturduktan sonra retopology ile optimize edilmiş bir düşük poligon model elde ettim. PBR malzemeler ve normal mapping ile detayları korudum.",
+              "After creating a detailed high-polygon model using sculpting techniques, I achieved an optimized low-polygon model through retopology. I preserved details using PBR materials and normal mapping.",
             technologies: [
               "Blender",
               "Sculpting",
@@ -1991,24 +1991,24 @@ I will start. #Blender3D #Tutorial
               "Animation",
             ],
             features: [
-              "Detaylı karakter modeli (12K poligon)",
-              "PBR malzemeler ve dokular",
-              "Tam rigging ve kemik sistemi",
-              "Yüz ifadeleri ve morph targets",
-              "Temel hareket animasyonları",
-              "Unity ve Unreal Engine uyumluluğu",
+              "Detailed character model (12K polygons)",
+              "PBR materials and textures",
+              "Full rigging and bone system",
+              "Facial expressions and morph targets",
+              "Basic movement animations",
+              "Unity and Unreal Engine compatibility",
             ],
             image:
-              "https://readdy.ai/api/search-image?query=Futuristic%20sci-fi%20character%203D%20model%20rendered%20in%20Blender%2C%20highly%20detailed%20with%20glowing%20elements%2C%20cyberpunk%20style%20with%20purple%20and%20blue%20accents%2C%20professional%203D%20modeling%20work%2C%20dark%20background%20with%20dramatic%20lighting%2C%20multiple%20angles%20and%20wireframe%20view&width=800&height=500&seq=project3detail&orientation=landscape",
+              "https://readdy.ai/api/search-image?query=Futuristic%20sci-fi%20character%203D%20model%20rendered%20in%20Blender%2C%20highly%20detailed%20with%20glowing%20elements%2C%20cyberpunk%20style%20with%20purple%20and%20blue%20lighting%2C%20professional%203D%20modeling%20work%2C%20dark%20background%20with%20dramatic%20lighting%2C%20multiple%20angles%20and%20wireframe%20view&width=800&height=500&seq=project3detail&orientation=landscape",
           },
           project4: {
-            title: "Analitik Dashboard",
+            title: "Analytics Dashboard",
             description:
-              "İşletmelerin verilerini görselleştirmelerine ve analiz etmelerine olanak tanıyan interaktif bir dashboard. Gerçek zamanlı veri izleme ve raporlama özellikleri içerir.",
+              "An interactive dashboard enabling businesses to visualize and analyze their data. Includes real-time data monitoring and reporting features.",
             challenge:
-              "Büyük veri setlerini verimli bir şekilde işlemek, anlamlı görselleştirmeler oluşturmak ve kullanıcıların özelleştirilebilir raporlar oluşturmasına olanak tanımak gerekiyordu.",
+              "Efficiently processing large datasets, creating meaningful visualizations, and allowing users to generate customizable reports were necessary.",
             solution:
-              "Vue.js ile modüler bir frontend mimarisi kurdum ve D3.js ile interaktif veri görselleştirmeleri oluşturdum. Express ve Socket.io ile gerçek zamanlı veri akışı sağladım.",
+              "I established a modular frontend architecture with Vue.js and created interactive data visualizations with D3.js. I ensured real-time data flow with Express and Socket.io.",
             technologies: [
               "Vue.js",
               "D3.js",
@@ -2019,25 +2019,25 @@ I will start. #Blender3D #Tutorial
               "Docker",
             ],
             features: [
-              "Özelleştirilebilir dashboard bileşenleri",
-              "Gerçek zamanlı veri akışı",
-              "İnteraktif grafikler ve görselleştirmeler",
-              "Veri filtreleme ve analiz araçları",
-              "Otomatik raporlama ve export özellikleri",
-              "Kullanıcı yetkilendirme ve rol tabanlı erişim",
-              "Responsive tasarım",
+              "Customizable dashboard components",
+              "Real-time data streaming",
+              "Interactive charts and visualizations",
+              "Data filtering and analysis tools",
+              "Automated reporting and export features",
+              "User authorization and role-based access",
+              "Responsive design",
             ],
             image:
               "https://readdy.ai/api/search-image?query=Dashboard%20analytics%20interface%20with%20dark%20theme%2C%20showing%20data%20visualization%20with%20charts%20and%20graphs%2C%20clean%20UI%20with%20purple%20accent%20colors%2C%20professional%20web%20development%20project%20screenshot%2C%20business%20intelligence%20platform&width=800&height=500&seq=project4detail&orientation=landscape",
           },
           project5: {
-            title: "Seyahat Planlama Uygulaması",
+            title: "Travel Planning Application",
             description:
-              "Kullanıcıların seyahatlerini planlamalarına, rezervasyon yapmalarına ve gezi rotaları oluşturmalarına olanak tanıyan kapsamlı bir mobil uygulama.",
+              "A comprehensive mobile application allowing users to plan their trips, make reservations, and create travel itineraries.",
             challenge:
-              "Farklı seyahat hizmetlerini (uçuşlar, oteller, etkinlikler) tek bir platformda entegre etmek ve kullanıcılara kişiselleştirilmiş öneriler sunmak gerekiyordu.",
+              "Integrating various travel services (flights, hotels, activities) into a single platform and providing personalized recommendations to users were necessary.",
             solution:
-              "React Native ile performanslı bir mobil uygulama geliştirdim ve GraphQL ile verimli API iletişimi sağladım. Çeşitli seyahat API'leri ile entegrasyon kurarak kapsamlı bir seyahat platformu oluşturdum.",
+              "I developed a high-performance mobile application with React Native and ensured efficient API communication with GraphQL. I established integration with various travel APIs to create a comprehensive travel platform.",
             technologies: [
               "React Native",
               "GraphQL",
@@ -2045,28 +2045,28 @@ I will start. #Blender3D #Tutorial
               "Node.js",
               "MongoDB",
               "Google Maps API",
-              "Booking API'leri",
+              "Booking APIs",
             ],
             features: [
-              "Uçuş, otel ve etkinlik araması",
-              "Kişiselleştirilmiş seyahat önerileri",
-              "Detaylı gezi planı oluşturma",
-              "Interaktif haritalar ve rotalar",
-              "Rezervasyon yönetimi",
-              "Offline kullanım desteği",
-              "Seyahat anıları ve fotoğraf albümleri",
+              "Flight, hotel, and activity search",
+              "Personalized travel recommendations",
+              "Detailed itinerary creation",
+              "Interactive maps and routes",
+              "Reservation management",
+              "Offline usage support",
+              "Travel memories and photo albums",
             ],
             image:
-              "https://readdy.ai/api/search-image?query=Mobile%20travel%20app%20interface%20with%20dark%20theme%2C%20showing%20destination%20discovery%20screens%2C%20trip%20planning%20features%2C%20clean%20UI%20with%20purple%20accent%20colors%2C%20professional%20mobile%20app%20development%20project%20screenshot%20on%20smartphone&width=800&height=500&seq=project5detail&orientation=landscape",
+              "https://readdy.ai/api/search-image?query=Mobile%20travel%20app%20interface%20with%20dark%20theme%2C%20showing%20destination%20discovery%20screens%2C%20trip%20planning%20features%2C%20clean%20UI%20with%20purple%20accent%20colors%2C%20professional%20mobile%20app%20development%20project%20screenshot%2C%20on%20smartphone&width=800&height=500&seq=project5detail&orientation=landscape",
           },
           project6: {
-            title: "Mimari Görselleştirme",
+            title: "Architectural Visualization",
             description:
-              "Bir mimari proje için Blender kullanılarak oluşturulmuş fotorealistik iç mekan ve dış mekan görselleştirmeleri. Detaylı ışıklandırma ve malzeme çalışmaları içerir.",
+              "Photorealistic interior and exterior visualizations created for an architectural project using Blender. Includes detailed lighting and material studies.",
             challenge:
-              "Fotorealistik görüntüler oluşturmak için karmaşık ışıklandırma ve malzeme ayarları yapmak, aynı zamanda render sürelerini makul seviyelerde tutmak gerekiyordu.",
+              "Creating photorealistic images required complex lighting and material setups, while also keeping render times at reasonable levels.",
             solution:
-              "Cycles render motoru ile global illumination ve fiziksel tabanlı ışıklandırma kullandım. Procedural malzemeler ve detaylı doku haritaları ile gerçekçi yüzeyler oluşturdum.",
+              "I utilized global illumination and physically-based lighting with the Cycles render engine. I created realistic surfaces with procedural materials and detailed texture maps.",
             technologies: [
               "Blender",
               "Cycles Render",
@@ -2076,15 +2076,15 @@ I will start. #Blender3D #Tutorial
               "Post-processing",
             ],
             features: [
-              "Fotorealistik iç ve dış mekan görselleştirmeleri",
-              "Gün ışığı ve gece aydınlatma senaryoları",
-              "Detaylı mobilya ve dekorasyon modelleri",
-              "Gerçekçi malzeme ve doku çalışmaları",
-              "Atmosferik efektler ve derinlik",
-              "Sanal gerçeklik uyumlu 360° görüntüler",
+              "Photorealistic interior and exterior visualizations",
+              "Daylight and night lighting scenarios",
+              "Detailed furniture and decoration models",
+              "Realistic material and texture studies",
+              "Atmospheric effects and depth",
+              "Virtual reality compatible 360° images",
             ],
             image:
-              "https://readdy.ai/api/search-image?query=Futuristic%20interior%20architectural%20visualization%20rendered%20in%20Blender%2C%20modern%20minimalist%20space%20with%20holographic%20elements%2C%20cyberpunk%20style%20with%20purple%20and%20blue%20lighting%2C%20professional%203D%20modeling%20work%2C%20dark%20atmosphere%20with%20dramatic%20lighting&width=800&height=500&seq=project6detail&orientation=landscape",
+              "https://readdy.ai/api/search-image?query=Futuristic%20interior%20architectural%20visualization%20rendered%20in%20Blender%2C%20modern%20minimalist%20space%20with%20holographic%20elements%2C%20cyberpunk%20style%20with%20purple%20and%20blue%20lighting%2C%20professional%203D%20modeling%20work%2C%20dark%20atmosphere%20with%20dramatic%20lighting&width=800%20height=500&seq=project6detail&orientation=landscape",
           },
         };
         // Open modal with project details
@@ -2097,27 +2097,27 @@ I will start. #Blender3D #Tutorial
               modalContent.innerHTML = `
       <img src="${project.image}" alt="${project.title}" class="w-full h-64 object-cover rounded-lg mb-6">
       <div class="mb-6">
-      <h4 class="text-lg font-semibold mb-2">Proje Açıklaması</h4>
+      <h4 class="text-lg font-semibold mb-2">Project Description</h4>
       <p class="text-gray-400">${project.description}</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
       <div>
-      <h4 class="text-lg font-semibold mb-2">Zorluk</h4>
+      <h4 class="text-lg font-semibold mb-2">Level</h4>
       <p class="text-gray-400">${project.challenge}</p>
       </div>
       <div>
-      <h4 class="text-lg font-semibold mb-2">Çözüm</h4>
+      <h4 class="text-lg font-semibold mb-2">Solution</h4>
       <p class="text-gray-400">${project.solution}</p>
       </div>
       </div>
       <div class="mb-6">
-      <h4 class="text-lg font-semibold mb-2">Teknolojiler</h4>
+      <h4 class="text-lg font-semibold mb-2">Technologies</h4>
       <div class="flex flex-wrap gap-2">
       ${project.technologies.map((tech) => `<span class="bg-[#0F172A] text-gray-300 px-3 py-1 rounded-full text-sm">${tech}</span>`).join("")}
       </div>
       </div>
       <div>
-      <h4 class="text-lg font-semibold mb-2">Özellikler</h4>
+      <h4 class="text-lg font-semibold mb-2">Features</h4>
       <ul class="list-disc list-inside text-gray-400 space-y-1">
       ${project.features.map((feature) => `<li>${feature}</li>`).join("")}
       </ul>
