@@ -28,6 +28,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="png" href="ubuntu-logo.png"/>
     <link
       href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
       rel="stylesheet"
@@ -231,26 +232,39 @@
       input[type="number"] {
       -moz-appearance: textfield;
       }
+      @keyframes headerEffect {
+        from { transform: translateY(-20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      .header-effect {
+        animation: headerEffect 1s ease-out;
+      }
     </style>
   </head>
   <body class="bg-[#0F172A] text-gray-200">
+    <!-- Begin dev notification overlay -->
+    <div id="devNotification" class="fixed inset-0 bg-black bg-opacity-90 z-[10000] flex flex-col justify-center items-center">
+      <div class="bg-[#1E293B] p-8 rounded-lg text-center max-w-md mx-4">
+        <h2 class="text-2xl font-bold text-white mb-4">Dev Notice</h2>
+        <p class="text-gray-300 mb-6">The site is still under development. To continue please tap Ok button!</p>
+        <button id="devNotificationBtn" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition-all duration-300">Ok</button>
+      </div>
+    </div>
+    <!-- End dev notification overlay -->
     <div class="custom-cursor"></div>
     <div class="custom-cursor-follower"></div>
     <!-- Header -->
     <header
-      class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-300 header-effect"
       id="header"
     >
       <div
         class="container mx-auto px-6 py-4 flex justify-between items-center"
       >
-        <a href="#" class="text-2xl font-['Pacifico'] gradient-text">
-          <span class="relative inline-block">
-            <span
-              class="absolute -inset-1 blur bg-gradient-to-r from-primary to-secondary opacity-50"
-            ></span>
-            <span class="relative">FV</span>
-          </span>
+        <!-- Updated header logo size -->
+        <a href="#" class="logo">
+          <!-- Replace 'ubuntu-logo.png' with your PNG file path -->
+          <img src="ubuntu-logo.png" alt="Header Logo" class="w-[69px] h-[69px]">
         </a>
         <nav class="hidden md:flex items-center space-x-8">
           <a
@@ -280,48 +294,12 @@
           >
         </nav>
         <div class="flex items-center space-x-4">
-          <div class="relative">
-            <button
-              class="flex items-center space-x-1 text-gray-300 hover:text-white"
-              id="languageToggle"
-            >
-              <span class="w-6 h-6 flex items-center justify-center">
-                <i class="ri-global-line"></i>
-              </span>
-              <span>TR</span>
-              <span class="w-4 h-4 flex items-center justify-center">
-                <i class="ri-arrow-down-s-line"></i>
-              </span>
-            </button>
-            <div
-              class="absolute right-0 mt-2 w-32 bg-[#1E293B] rounded shadow-lg hidden"
-              id="languageMenu"
-            >
-              <a
-                href="#"
-                class="block px-4 py-2 text-gray-300 hover:bg-[#2D3748] hover:text-white"
-                >Türkçe</a
-              >
-              <a
-                href="#"
-                class="block px-4 py-2 text-gray-300 hover:bg-[#2D3748] hover:text-white"
-                >English</a
-              >
-              <a
-                href="#"
-                class="block px-4 py-2 text-gray-300 hover:bg-[#2D3748] hover:text-white"
-                >Türkmençe</a
-              >
-            </div>
-          </div>
-          <button
-            class="w-10 h-10 rounded-full flex items-center justify-center bg-[#1E293B]"
-            id="themeToggle"
-          >
+          <a href="https://github.com/Code-Creator-man?tab=repositories" target="_blank" class="flex items-center space-x-1 text-gray-300 hover:text-white">
             <span class="w-6 h-6 flex items-center justify-center">
-              <i class="ri-moon-line"></i>
+              <i class="ri-github-fill"></i>
             </span>
-          </button>
+            <span>GitHub Star</span>
+          </a>
           <button
             class="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-[#1E293B]"
             id="mobileMenuToggle"
@@ -406,8 +384,9 @@
           </div>
           <div class="w-full md:w-1/2 flex justify-center">
             <div class="relative w-80 h-80 md:w-96 md:h-96">
+              <!-- Updated: change source to your custom image file (place it in /home/groot/Desktop/Portfolio/web-demo/assets/) -->
               <img
-                src="https://readdy.ai/api/search-image?query=Futuristic%203D%20avatar%20of%20a%20male%20developer%20with%20holographic%20interface%20elements%20surrounding%20him%2C%20subtle%20purple%20and%20blue%20glow%2C%20digital%20particles%2C%20high-tech%20environment%2C%20professional%20appearance%2C%20minimalist%20style%2C%20dark%20background%20with%20geometric%20patterns&width=600&height=600&seq=avatar123&orientation=squarish"
+                src="rick-sanchez-rick-3840x2160-9515.jpg"
                 alt="3D Avatar"
                 class="w-full h-full object-cover rounded-full border-4 border-primary/30"
               />
@@ -442,7 +421,7 @@
         </div>
         <div class="mb-16">
           <h3 class="text-2xl font-semibold mb-8 gradient-text">
-            Yazılım Teknolojileri
+            Software technologies
           </h3>
           <div
             class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
@@ -457,7 +436,7 @@
                 <h4 class="text-lg font-medium">HTML/CSS</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Uzmanlık</span>
+                <span class="text-gray-400">Expertise</span>
                 <span>90%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -477,8 +456,8 @@
                 <h4 class="text-lg font-medium">JavaScript</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Uzmanlık</span>
-                <span>85%</span>
+                <span class="text-gray-400">Expertise</span>
+                <span>95%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
                 <div
@@ -497,7 +476,7 @@
                 <h4 class="text-lg font-medium">React</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Uzmanlık</span>
+                <span class="text-gray-400">Expertise</span>
                 <span>80%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -517,7 +496,7 @@
                 <h4 class="text-lg font-medium">Node.js</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Uzmanlık</span>
+                <span class="text-gray-400">Expertise</span>
                 <span>75%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -537,7 +516,7 @@
                 <h4 class="text-lg font-medium">SQL/NoSQL</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Uzmanlık</span>
+                <span class="text-gray-400">Expertise</span>
                 <span>70%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -557,7 +536,7 @@
                 <h4 class="text-lg font-medium">Git</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Uzmanlık</span>
+                <span class="text-gray-400">Expertise</span>
                 <span>85%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -577,7 +556,7 @@
                 <h4 class="text-lg font-medium">Flutter</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Uzmanlık</span>
+                <span class="text-gray-400">Expertise</span>
                 <span>65%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -597,7 +576,7 @@
                 <h4 class="text-lg font-medium">Python</h4>
               </div>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-400">Uzmanlık</span>
+                <span class="text-gray-400">Expertise</span>
                 <span>60%</span>
               </div>
               <div class="w-full h-2 bg-[#0F172A] rounded-full overflow-hidden">
@@ -611,7 +590,7 @@
         </div>
         <div>
           <h3 class="text-2xl font-semibold mb-8 gradient-text">
-            3D Modelleme & Tasarım
+            3D Modelling & Design
           </h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-[#1E293B] rounded-lg p-6 card-hover">
@@ -626,7 +605,7 @@
               <div class="space-y-4">
                 <div>
                   <div class="mb-2 flex justify-between">
-                    <span class="text-gray-400">Modelleme</span>
+                    <span class="text-gray-400">Modelling</span>
                     <span>80%</span>
                   </div>
                   <div
@@ -675,16 +654,15 @@
                 class="w-full h-64 object-cover"
               />
               <div class="p-6">
-                <h4 class="text-lg font-medium mb-2">3D Modelleme Portföyü</h4>
+                <h4 class="text-lg font-medium mb-2">3D Modelling Portfolio</h4>
                 <p class="text-gray-400 mb-4">
-                  Karakterler, ortamlar ve ürün tasarımları dahil olmak üzere
-                  çeşitli 3D modelleme projelerim.
+                  Characters, environment and product models also some of the projects.
                 </p>
                 <a
                   href="#portfolio"
                   class="text-secondary hover:text-secondary/80 inline-flex items-center"
                 >
-                  <span>Daha fazla gör</span>
+                  <span>See more</span>
                   <span class="w-5 h-5 flex items-center justify-center ml-1">
                     <i class="ri-arrow-right-line"></i>
                   </span>
@@ -712,25 +690,25 @@
               class="px-4 sm:px-6 py-2 rounded-full bg-primary text-white whitespace-nowrap text-sm sm:text-base"
               data-filter="all"
             >
-              Tümü
+              All
             </button>
             <button
               class="px-4 sm:px-6 py-2 rounded-full text-gray-300 hover:text-white whitespace-nowrap text-sm sm:text-base"
               data-filter="web"
             >
-              Web Geliştirme
+              Web development
             </button>
             <button
               class="px-4 sm:px-6 py-2 rounded-full text-gray-300 hover:text-white whitespace-nowrap text-sm sm:text-base"
               data-filter="mobile"
             >
-              Mobil Uygulama
+              Mobil Application
             </button>
             <button
               class="px-4 sm:px-6 py-2 rounded-full text-gray-300 hover:text-white whitespace-nowrap text-sm sm:text-base"
               data-filter="3d"
             >
-              3D Modelleme
+              3D Modelling
             </button>
           </div>
         </div>
@@ -752,15 +730,15 @@
               <div
                 class="absolute top-4 right-4 bg-primary/90 text-white px-3 py-1 rounded-full text-sm"
               >
-                Web Geliştirme
+                Web Application
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">E-ticaret Platformu</h3>
+              <h3 class="text-xl font-semibold mb-2">E-commercial Platform</h3>
               <p class="text-gray-400 mb-4">
-                React ve Node.js kullanılarak geliştirilen tam kapsamlı bir
-                e-ticaret çözümü. Ödeme entegrasyonu, kullanıcı yönetimi ve
-                envanter takibi içerir.
+               A full comprehensive developed using react and node.js
+e-commerce solution.Payment integration, user management and
+Contains inventory tracking.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span
@@ -784,7 +762,7 @@
                 class="text-primary hover:text-primary/80 inline-flex items-center project-details-btn"
                 data-project="project1"
               >
-                <span>Detayları Gör</span>
+                <span>See Details</span>
                 <span class="w-5 h-5 flex items-center justify-center ml-1">
                   <i class="ri-arrow-right-line"></i>
                 </span>
@@ -805,17 +783,17 @@
               <div
                 class="absolute top-4 right-4 bg-secondary/90 text-white px-3 py-1 rounded-full text-sm"
               >
-                Mobil Uygulama
+                Mobil Application
               </div>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-semibold mb-2">
-                Fitness Takip Uygulaması
+               Fitness Tracking App
               </h3>
               <p class="text-gray-400 mb-4">
-                Flutter ile geliştirilen, kullanıcıların antrenmanlarını takip
-                edebileceği, beslenme planlarını yönetebileceği ve ilerleme
-                grafiklerini görebileceği kapsamlı bir fitness uygulaması.
+                Developed with Flutter, tracking users' training
+that it can manage, manage nutritional plans and progress.
+A comprehensive fitness application where he can see his graphics.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span
@@ -835,7 +813,7 @@
                 class="text-secondary hover:text-secondary/80 inline-flex items-center project-details-btn"
                 data-project="project2"
               >
-                <span>Detayları Gör</span>
+                <span>See Details</span>
                 <span class="w-5 h-5 flex items-center justify-center ml-1">
                   <i class="ri-arrow-right-line"></i>
                 </span>
@@ -856,17 +834,17 @@
               <div
                 class="absolute top-4 right-4 bg-primary/90 text-white px-3 py-1 rounded-full text-sm"
               >
-                3D Modelleme
+                3D Modelling
               </div>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-semibold mb-2">
-                Sci-Fi Karakter Tasarımı
+                Sci-Fi Character Design
               </h3>
               <p class="text-gray-400 mb-4">
-                Blender kullanılarak tasarlanan, bir video oyunu için
-                oluşturulmuş detaylı bir bilim kurgu karakter modeli. Rigging ve
-                temel animasyonlar içerir.
+                Designed for a video game designed using blender
+A detailed science fiction character model.Rigging and
+contains basic animations.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span
@@ -886,7 +864,7 @@
                 class="text-primary hover:text-primary/80 inline-flex items-center project-details-btn"
                 data-project="project3"
               >
-                <span>Detayları Gör</span>
+                <span>See Details</span>
                 <span class="w-5 h-5 flex items-center justify-center ml-1">
                   <i class="ri-arrow-right-line"></i>
                 </span>
@@ -907,15 +885,15 @@
               <div
                 class="absolute top-4 right-4 bg-primary/90 text-white px-3 py-1 rounded-full text-sm"
               >
-                Web Geliştirme
+                Web Development
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Analitik Dashboard</h3>
+              <h3 class="text-xl font-semibold mb-2">Analitic Dashboard</h3>
               <p class="text-gray-400 mb-4">
-                İşletmelerin verilerini görselleştirmelerine ve analiz
-                etmelerine olanak tanıyan interaktif bir dashboard. Gerçek
-                zamanlı veri izleme ve raporlama özellikleri içerir.
+                Visualizing businesses of businesses and analysis
+an interactive dashboard that allows them to.Real
+Timed data monitoring and reporting features.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span
@@ -935,7 +913,7 @@
                 class="text-primary hover:text-primary/80 inline-flex items-center project-details-btn"
                 data-project="project4"
               >
-                <span>Detayları Gör</span>
+                <span>See Details</span>
                 <span class="w-5 h-5 flex items-center justify-center ml-1">
                   <i class="ri-arrow-right-line"></i>
                 </span>
@@ -956,17 +934,17 @@
               <div
                 class="absolute top-4 right-4 bg-secondary/90 text-white px-3 py-1 rounded-full text-sm"
               >
-                Mobil Uygulama
+                Mobil App
               </div>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-semibold mb-2">
-                Seyahat Planlama Uygulaması
+                Vocation Planning App
               </h3>
               <p class="text-gray-400 mb-4">
-                Kullanıcıların seyahatlerini planlamalarına, rezervasyon
-                yapmalarına ve gezi rotaları oluşturmalarına olanak tanıyan
-                kapsamlı bir mobil uygulama.
+               Users planning travel, reservation
+allowing them to do and create travel routes
+Comprehensive mobile application.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span
@@ -986,7 +964,7 @@
                 class="text-secondary hover:text-secondary/80 inline-flex items-center project-details-btn"
                 data-project="project5"
               >
-                <span>Detayları Gör</span>
+                <span>See Details</span>
                 <span class="w-5 h-5 flex items-center justify-center ml-1">
                   <i class="ri-arrow-right-line"></i>
                 </span>
@@ -1007,15 +985,15 @@
               <div
                 class="absolute top-4 right-4 bg-primary/90 text-white px-3 py-1 rounded-full text-sm"
               >
-                3D Modelleme
+                3D Modelling
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Mimari Görselleştirme</h3>
+              <h3 class="text-xl font-semibold mb-2">Architecture development</h3>
               <p class="text-gray-400 mb-4">
-                Bir mimari proje için Blender kullanılarak oluşturulmuş
-                fotorealistik iç mekan ve dış mekan görselleştirmeleri. Detaylı
-                ışıklandırma ve malzeme çalışmaları içerir.
+               Created using blender for an architectural project
+photorealistic interior and outdoor visualization.Detailed
+It includes lighting and material studies.
               </p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span
@@ -1035,7 +1013,7 @@
                 class="text-primary hover:text-primary/80 inline-flex items-center project-details-btn"
                 data-project="project6"
               >
-                <span>Detayları Gör</span>
+                <span>See Details</span>
                 <span class="w-5 h-5 flex items-center justify-center ml-1">
                   <i class="ri-arrow-right-line"></i>
                 </span>
@@ -1047,7 +1025,7 @@
           <button
             class="bg-[#1E293B] hover:bg-[#2D3748] text-white px-6 py-3 rounded-button font-medium transition-all duration-300 whitespace-nowrap"
           >
-            Daha Fazla Proje
+            More Projects
           </button>
         </div>
       </div>
@@ -1058,8 +1036,8 @@
         <div class="text-center mb-16">
           <h2 class="text-3xl md:text-4xl font-bold mb-4">Sosyal Medya</h2>
           <p class="text-gray-400 max-w-2xl mx-auto">
-            Sosyal medya hesaplarım ve aktivitelerim hakkında bilgi
-            edinebilirsiniz.
+            Information about my social media accounts and activities
+You can get them here.
           </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1074,21 +1052,21 @@
               <div>
                 <h3 class="text-xl font-semibold">GitHub</h3>
                 <a href="#" class="text-gray-400 hover:text-primary"
-                  >@muratyildiz</a
+                  >@Code-Creator-man</a
                 >
               </div>
             </div>
             <div class="mb-6">
               <div class="flex justify-between mb-2">
-                <span>Repolar</span>
+                <span>Repositories</span>
                 <span>32</span>
               </div>
               <div class="flex justify-between mb-2">
-                <span>Takipçiler</span>
+                <span>Followers</span>
                 <span>128</span>
               </div>
               <div class="flex justify-between">
-                <span>Katkılar (Bu yıl)</span>
+                <span>Supports (This year)</span>
                 <span>847</span>
               </div>
             </div>
@@ -1102,7 +1080,7 @@
               <span class="w-5 h-5 flex items-center justify-center mr-2">
                 <i class="ri-github-fill"></i>
               </span>
-              <span>Profili Görüntüle</span>
+              <span>View Profile</span>
             </a>
           </div>
           <!-- LinkedIn Card -->
@@ -1115,31 +1093,29 @@
               </div>
               <div>
                 <h3 class="text-xl font-semibold">LinkedIn</h3>
-                <a href="#" class="text-gray-400 hover:text-[#0077B5]"
-                  >Murat Yıldız</a
+                <a href="Paste here ..." class="text-gray-400 hover:text-[#0077B5]"
+                  >Vniverse77</a
                 >
               </div>
             </div>
             <div class="mb-6">
               <p class="text-gray-400 mb-4">
-                Yazılım Geliştirici & 3D Tasarımcı | React | Node.js | Blender |
-                Yaratıcı Teknolojiler
+                Software Developer & 3D Designer | React | Node.js | Blender |
+Creative Technologies
               </p>
               <div class="flex justify-between mb-2">
-                <span>Bağlantılar</span>
+                <span>Links</span>
                 <span>412</span>
               </div>
               <div class="flex justify-between mb-2">
-                <span>Gönderi Görüntülenmeleri</span>
+                <span>Post views</span>
                 <span>2.4K</span>
               </div>
             </div>
             <div class="bg-[#0F172A] rounded p-4 mb-4">
-              <h4 class="font-medium mb-2">Son Paylaşım</h4>
+              <h4 class="font-medium mb-2">Last Post</h4>
               <p class="text-gray-400 text-sm">
-                Yeni 3D modelleme projemi paylaştım! Blender'da geliştirdiğim bu
-                sci-fi karakterin yapım sürecini merak edenler için detaylı bir
-                makale hazırladım. #3DModelleme #Blender #GameDev
+               I shared a new 3D modeling project! I have prepared a detailed article for those who are curious about the construction process of this Sci-Fi character I have developed in Blender. #3DModelleme #Blender #GameDev
               </p>
               <div class="flex mt-2 text-sm">
                 <span class="flex items-center mr-4">
@@ -1169,7 +1145,7 @@
               <span class="w-5 h-5 flex items-center justify-center mr-2">
                 <i class="ri-linkedin-fill"></i>
               </span>
-              <span>Profili Görüntüle</span>
+              <span>View Profile</span>
             </a>
           </div>
           <!-- Twitter Card -->
@@ -1183,26 +1159,26 @@
               <div>
                 <h3 class="text-xl font-semibold">Twitter</h3>
                 <a href="#" class="text-gray-400 hover:text-[#1DA1F2]"
-                  >@muratyildizdev</a
+                  >@vniverse77</a
                 >
               </div>
             </div>
             <div class="mb-6">
               <div class="flex justify-between mb-2">
-                <span>Takipçiler</span>
+                <span>Followers</span>
                 <span>743</span>
               </div>
               <div class="flex justify-between mb-2">
-                <span>Takip Edilen</span>
+                <span>Following</span>
                 <span>512</span>
               </div>
             </div>
             <div class="space-y-4 mb-4">
               <div class="bg-[#0F172A] rounded p-4">
                 <p class="text-gray-400 text-sm mb-2">
-                  Yeni projemde React ve Three.js kullanarak interaktif 3D web
-                  deneyimleri oluşturuyorum. Web'in geleceği gerçekten heyecan
-                  verici! #WebDev #3D #React
+                  Interactive 3D Web using React and Three.js in my new project
+I create experiences.The future of the Web is really excitement
+transmitter! #WebDev #3D #React
                 </p>
                 <div class="flex text-sm text-gray-500">
                   <span class="flex items-center mr-4">
@@ -1227,9 +1203,9 @@
               </div>
               <div class="bg-[#0F172A] rounded p-4">
                 <p class="text-gray-400 text-sm mb-2">
-                  Blender 3.5'in yeni özellikleri inanılmaz! Geometry nodes ile
-                  neler yapabileceğimi keşfediyorum. Yakında bir tutorial serisi
-                  başlatacağım. #Blender3D #Tutorial
+                  The new features of Blender 4.0 are incredible! With Geometry Nodes
+I discover what I can do. A Tutorial Series soon
+I will start. #Blender3D #Tutorial
                 </p>
                 <div class="flex text-sm text-gray-500">
                   <span class="flex items-center mr-4">
@@ -1260,7 +1236,7 @@
               <span class="w-5 h-5 flex items-center justify-center mr-2">
                 <i class="ri-twitter-x-fill"></i>
               </span>
-              <span>Profili Görüntüle</span>
+              <span>View Profile</span>
             </a>
           </div>
         </div>
@@ -1274,7 +1250,7 @@
               </div>
               <div>
                 <h3 class="text-xl font-semibold">Spotify</h3>
-                <p class="text-gray-400">Şu an dinleniyor</p>
+                <p class="text-gray-400">Listening right now</p>
               </div>
             </div>
             <div class="flex flex-col md:flex-row items-center">
@@ -1329,10 +1305,9 @@
     <section id="contact" class="py-20 relative">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">İletişim</h2>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Questions</h2>
           <p class="text-gray-400 max-w-2xl mx-auto">
-            Projeleriniz, iş birliği teklifleriniz veya sorularınız için benimle
-            iletişime geçebilirsiniz.
+            You can contact with me your Danishnesses, Projects and Questions:.
           </p>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -1340,65 +1315,65 @@
             <form class="space-y-6">
               <div>
                 <label for="name" class="block text-sm font-medium mb-2"
-                  >Ad Soyad</label
+                  >Nickname or username</label
                 >
                 <input
                   type="text"
                   id="name"
                   class="w-full bg-[#1E293B] border-none rounded p-3 text-white focus:ring-2 focus:ring-primary outline-none"
-                  placeholder="Adınız ve soyadınız"
+                  placeholder="Your nickname or username"
                 />
               </div>
               <div>
                 <label for="email" class="block text-sm font-medium mb-2"
-                  >E-posta</label
+                  >E-mail</label
                 >
                 <input
                   type="email"
                   id="email"
                   class="w-full bg-[#1E293B] border-none rounded p-3 text-white focus:ring-2 focus:ring-primary outline-none"
-                  placeholder="E-posta adresiniz"
+                  placeholder="Your email address"
                 />
               </div>
               <div>
                 <label for="subject" class="block text-sm font-medium mb-2"
-                  >Konu</label
+                  >Subject</label
                 >
                 <input
                   type="text"
                   id="subject"
                   class="w-full bg-[#1E293B] border-none rounded p-3 text-white focus:ring-2 focus:ring-primary outline-none"
-                  placeholder="Mesajınızın konusu"
+                  placeholder="Subject of your message"
                 />
               </div>
               <div>
                 <label for="message" class="block text-sm font-medium mb-2"
-                  >Mesaj</label
+                  >Message</label
                 >
                 <textarea
                   id="message"
                   rows="6"
                   class="w-full bg-[#1E293B] border-none rounded p-3 text-white focus:ring-2 focus:ring-primary outline-none resize-none"
-                  placeholder="Mesajınızı buraya yazın..."
+                  placeholder="Type your message here"
                 ></textarea>
               </div>
               <div class="flex items-center">
                 <div class="custom-checkbox" id="termsCheckbox"></div>
                 <label for="termsCheckbox" class="ml-2 text-sm text-gray-400"
-                  >Kişisel verilerimin işlenmesini kabul ediyorum</label
+                  >I Accept to edit my personal informations to site ovner</label
                 >
               </div>
               <button
                 type="submit"
                 class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition-all duration-300 w-full whitespace-nowrap"
               >
-                Mesaj Gönder
+                Send Message
               </button>
             </form>
           </div>
           <div class="space-y-8">
             <div class="bg-[#1E293B] rounded-lg p-6">
-              <h3 class="text-xl font-semibold mb-6">İletişim Bilgileri</h3>
+              <h3 class="text-xl font-semibold mb-6">Contact informations</h3>
               <div class="space-y-4">
                 <div class="flex items-start">
                   <div
@@ -1407,11 +1382,11 @@
                     <i class="ri-mail-line text-xl text-primary"></i>
                   </div>
                   <div>
-                    <h4 class="font-medium mb-1">E-posta</h4>
+                    <h4 class="font-medium mb-1">E-mail</h4>
                     <a
                       href="mailto:vniverse77@example.com"
                       class="text-gray-400 hover:text-primary"
-                      >vniverse77@example.com</a
+                      >Justforcodings@hotmail.com</a
                     >
                   </div>
                 </div>
@@ -1422,8 +1397,8 @@
                     <i class="ri-map-pin-line text-xl text-primary"></i>
                   </div>
                   <div>
-                    <h4 class="font-medium mb-1">Konum</h4>
-                    <p class="text-gray-400">İstanbul, Türkiye</p>
+                    <h4 class="font-medium mb-1">Location</h4>
+                    <p class="text-gray-400">Mary, Turkmenistan</p>
                   </div>
                 </div>
                 <div class="flex items-start">
@@ -1433,8 +1408,11 @@
                     <i class="ri-time-line text-xl text-primary"></i>
                   </div>
                   <div>
-                    <h4 class="font-medium mb-1">Çalışma Saatleri</h4>
-                    <p class="text-gray-400">Pazartesi - Cuma: 09:00 - 18:00</p>
+                    <h4 class="font-medium mb-1">Working times</h4>
+                    <p class="text-gray-400">Weekends: 08:00 - 19:00
+                      <br />
+                      Weekdays: 14:00 - 20:00
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1448,48 +1426,42 @@
       <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
-            <a
-              href="#"
-              class="text-3xl font-['Pacifico'] gradient-text mb-4 inline-block"
-            >
-              <span class="relative inline-block">
-                <span
-                  class="absolute -inset-1 blur bg-gradient-to-r from-primary to-secondary opacity-50"
-                ></span>
-                <span class="relative">V77</span>
-              </span>
+            <!-- Replace the text logo with your footer PNG -->
+            <a href="#" class="logo mb-4 inline-block">
+              <!-- Replace 'your-footer-logo.png' with your PNG file path -->
+              <img src="ubuntu-logo.png" alt="Footer Logo" class="w-32">
             </a>
             <p class="text-gray-400 mb-6">
-              Yaratıcı yazılım çözümleri ve 3D tasarım hizmetleri sunuyorum.
-              Vizyonunuzu dijital dünyada hayata geçirmeye hazırım.
+              I serve creative software solutions & modern 3D designs.
+              Ready to bring your ideas to life with cutting-edge technology and design.
             </p>
             <div class="flex flex-wrap gap-4">
               <a
-                href="#"
+                href="https://github.com/Code-Creator-man"
                 class="w-10 h-10 flex items-center justify-center bg-[#1E293B] rounded-full hover:bg-primary/20 transition-colors"
               >
                 <i class="ri-github-fill text-lg"></i>
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/berdimuhammet-yslamow-b7900a319/"
                 class="w-10 h-10 flex items-center justify-center bg-[#1E293B] rounded-full hover:bg-[#0077B5]/20 transition-colors"
               >
                 <i class="ri-linkedin-fill text-lg text-[#0077B5]"></i>
               </a>
               <a
-                href="#"
+                href="https://x.com/Yslamow_B"
                 class="w-10 h-10 flex items-center justify-center bg-[#1E293B] rounded-full hover:bg-[#1DA1F2]/20 transition-colors"
               >
                 <i class="ri-twitter-x-fill text-lg text-[#1DA1F2]"></i>
               </a>
               <a
-                href="#"
+                href="https://instagram.com/"
                 class="w-10 h-10 flex items-center justify-center bg-[#1E293B] rounded-full hover:bg-[#E1306C]/20 transition-colors"
               >
                 <i class="ri-instagram-fill text-lg text-[#E1306C]"></i>
               </a>
               <a
-                href="#"
+                href="https://open.spotify.com/playlist/2Nrn8p6wkoZH2IUDbVIEnl"
                 class="w-10 h-10 flex items-center justify-center bg-[#1E293B] rounded-full hover:bg-[#1DB954]/20 transition-colors"
               >
                 <i class="ri-spotify-fill text-lg text-[#1DB954]"></i>
@@ -1497,20 +1469,20 @@
             </div>
           </div>
           <div>
-            <h4 class="text-lg font-semibold mb-6">Hızlı Bağlantılar</h4>
+            <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
             <ul class="space-y-3">
               <li>
                 <a
                   href="#home"
                   class="text-gray-400 hover:text-white transition-colors"
-                  >Ana Sayfa</a
+                  >Home</a
                 >
               </li>
               <li>
                 <a
                   href="#skills"
                   class="text-gray-400 hover:text-white transition-colors"
-                  >Yetenekler</a
+                  >Skills</a
                 >
               </li>
               <li>
@@ -1524,82 +1496,82 @@
                 <a
                   href="#social"
                   class="text-gray-400 hover:text-white transition-colors"
-                  >Sosyal Medya</a
+                  >Social Media</a
                 >
               </li>
               <li>
                 <a
                   href="#contact"
                   class="text-gray-400 hover:text-white transition-colors"
-                  >İletişim</a
+                  >Contact</a
                 >
               </li>
             </ul>
           </div>
           <div>
-            <h4 class="text-lg font-semibold mb-6">Hizmetler</h4>
+            <h4 class="text-lg font-semibold mb-6">Services</h4>
             <ul class="space-y-3">
               <li>
                 <a
                   href="#"
                   class="text-gray-400 hover:text-white transition-colors"
-                  >Web Geliştirme</a
+                  >Web Development</a
                 >
               </li>
               <li>
                 <a
                   href="#"
                   class="text-gray-400 hover:text-white transition-colors"
-                  >Mobil Uygulama</a
+                  >Mobil Application</a
                 >
               </li>
               <li>
                 <a
                   href="#"
                   class="text-gray-400 hover:text-white transition-colors"
-                  >3D Modelleme</a
+                  >3D Modelling</a
                 >
               </li>
               <li>
                 <a
                   href="#"
                   class="text-gray-400 hover:text-white transition-colors"
-                  >UI/UX Tasarım</a
+                  >UI/UX Design</a
                 >
               </li>
               <li>
                 <a
                   href="#"
                   class="text-gray-400 hover:text-white transition-colors"
-                  >Danışmanlık</a
+                  >Danishness</a
                 >
               </li>
             </ul>
           </div>
           <div>
-            <h4 class="text-lg font-semibold mb-6">İletişim</h4>
+            <h4 class="text-lg font-semibold mb-6">Contact</h4>
             <ul class="space-y-3">
               <li class="flex items-center">
                 <span class="w-5 h-5 flex items-center justify-center mr-2">
                   <i class="ri-mail-line"></i>
                 </span>
                 <a
-                  href="mailto:murat.yildiz@example.com"
+                  href="mailto:justforcodings@hotmail.com"
                   class="text-gray-400 hover:text-white transition-colors"
-                  >murat.yildiz@example.com</a
+                  >Justforcodings@hotmail.com</a
                 >
               </li>
               <li class="flex items-center">
                 <span class="w-5 h-5 flex items-center justify-center mr-2">
                   <i class="ri-map-pin-line"></i>
                 </span>
-                <span class="text-gray-400">İstanbul, Türkiye</span>
+                <span class="text-gray-400">Mary, Turkmenistan</span>
               </li>
               <li class="flex items-center">
                 <span class="w-5 h-5 flex items-center justify-center mr-2">
                   <i class="ri-time-line"></i>
                 </span>
-                <span class="text-gray-400">GMT+3 (İstanbul)</span>
+                <span class="text-gray-400">GMT+3 (Ashgabat)</span>
               </li>
             </ul>
           </div>
@@ -1637,7 +1609,7 @@
         <div class="p-6">
           <div class="flex justify-between items-center mb-6">
             <h3 class="text-2xl font-semibold" id="modalTitle">
-              Proje Detayları
+              Project Details
             </h3>
             <button
               class="w-10 h-10 flex items-center justify-center bg-[#0F172A] rounded-full"
@@ -1697,9 +1669,6 @@
     <script id="headerScript">
       document.addEventListener("DOMContentLoaded", function () {
         const header = document.getElementById("header");
-        const languageToggle = document.getElementById("languageToggle");
-        const languageMenu = document.getElementById("languageMenu");
-        const themeToggle = document.getElementById("themeToggle");
         const mobileMenuToggle = document.getElementById("mobileMenuToggle");
         const mobileMenu = document.getElementById("mobileMenu");
         // Scroll event for header
@@ -1710,32 +1679,8 @@
             header.classList.remove(
               "bg-[#0F172A]/90",
               "backdrop-blur-md",
-              "shadow-lg",
+              "shadow-lg"
             );
-          }
-        });
-        // Language toggle
-        languageToggle.addEventListener("click", function () {
-          languageMenu.classList.toggle("hidden");
-        });
-        // Close language menu when clicking outside
-        document.addEventListener("click", function (e) {
-          if (
-            !languageToggle.contains(e.target) &&
-            !languageMenu.contains(e.target)
-          ) {
-            languageMenu.classList.add("hidden");
-          }
-        });
-        // Theme toggle (placeholder functionality)
-        themeToggle.addEventListener("click", function () {
-          const icon = themeToggle.querySelector("i");
-          if (icon.classList.contains("ri-moon-line")) {
-            icon.classList.remove("ri-moon-line");
-            icon.classList.add("ri-sun-line");
-          } else {
-            icon.classList.remove("ri-sun-line");
-            icon.classList.add("ri-moon-line");
           }
         });
         // Mobile menu toggle
@@ -2203,6 +2148,19 @@
           }
           loadingBar.style.width = progress + "%";
         }, 200);
+      });
+    </script>
+    <!-- Modified Dev Notification Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function(){
+        const devNotification = document.getElementById("devNotification");
+        const btn = document.getElementById("devNotificationBtn");
+        btn.addEventListener("click", function(){
+          devNotification.classList.add("opacity-0", "transition-opacity", "duration-500");
+          setTimeout(function(){
+            devNotification.style.display = "none";
+          }, 500);
+        });
       });
     </script>
   </body>
