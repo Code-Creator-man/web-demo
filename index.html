@@ -51,7 +51,7 @@
       overflow-x: hidden;
       }
       .gradient-text {
-      background: linear-gradient(90deg, #7036f6, #54f654);
+      background: linear-gradient(90deg, #b635f1, #7c05bd);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -242,13 +242,13 @@
   </head>
   <body class="bg-[#0F172A] text-gray-200">
     <!-- Begin dev notification overlay -->
-    <!-- <div id="devNotification" class="fixed inset-0 bg-black bg-opacity-90 z-[10000] flex flex-col justify-center items-center">
+    <div id="devNotification" class="fixed inset-0 bg-black bg-opacity-90 z-[10000] flex flex-col justify-center items-center">
       <div class="bg-[#1E293B] p-8 rounded-lg text-center max-w-md mx-4">
         <h2 class="text-2xl font-bold text-white mb-4">Dev Notice</h2>
         <p class="text-gray-300 mb-6">The site is still under development. To continue please tap "Ok" button!</p>
         <button id="devNotificationBtn" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition-all duration-300">Ok</button>
       </div>
-    </div> -->
+    </div>
     <!-- End dev notification overlay -->
     <div class="custom-cursor"></div>
     <div class="custom-cursor-follower"></div>
@@ -1621,6 +1621,9 @@ I will start. #Blender3D #Tutorial
             <a href="#" class="text-gray-500 hover:text-white text-sm"
               >Cookie Policy</a
             >
+            <a  href="mailto:justforcodings@hotmail.com" class="text-gray-500 hover:text-white text-sm"
+              >Feedback</a
+            >
           </div>
         </div>
       </div>
@@ -1651,8 +1654,8 @@ I will start. #Blender3D #Tutorial
         </div>
       </div>
     </div>
-    <!-- Loading Screen -->
-    <!-- <div
+    <!------------------------- Loading Screen ---------------- -->
+    <div
       class="fixed inset-0 bg-[#0F172A] z-[9999] flex items-center justify-center"
       id="loadingScreen"
     >
@@ -1667,7 +1670,7 @@ I will start. #Blender3D #Tutorial
           ></div>
         </div>
       </div>
-    </div> -->
+    </div>
     <script id="customCursorScript">
       document.addEventListener("DOMContentLoaded", function () {
         const cursor = document.querySelector(".custom-cursor");
