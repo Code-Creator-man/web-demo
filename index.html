@@ -26,6 +26,7 @@
         },
       };
     </script>
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="png" href="Tux.png"/>
@@ -42,206 +43,10 @@
       rel="stylesheet"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
-    <style>
-      :where([class^="ri-"])::before { content: "\f3c2"; }
-      body {
-      font-family: 'Inter', sans-serif;
-      background-color: #000000;
-      color: #E2E8F0;
-      overflow-x: hidden;
-      }
-      .gradient-text {
-      background: linear-gradient(90deg, #b635f1, #7c05bd);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      }
-      .gradient-bg {
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
-      }
-      .card-hover {
-      transition: all 0.3s ease;
-      }
-      .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.3);
-      }
-      .custom-cursor {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: rgba(165, 129, 250, 0.5);
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: difference;
-      transition: transform 0.1s ease;
-      }
-      .custom-cursor-follower {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 1px solid rgba(159, 119, 253, 0.3);
-      position: fixed;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
-      }
-      input[type="range"] {
-      width: 100%;
-      height: 6px;
-      background: #1E293B;
-      border-radius: 5px;
-      outline: none;
-      }
-      input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
-      background: #070016;
-      border-radius: 50%;
-      cursor: pointer;
-      }
-      input[type="range"]::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
-      background: #060015;
-      border-radius: 50%;
-      cursor: pointer;
-      border: none;
-      }
-      .custom-checkbox {
-      position: relative;
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      background-color: #1E293B;
-      cursor: pointer;
-      }
-      .custom-checkbox.checked {
-      background-color: #8B5CF6;
-      }
-      .custom-checkbox.checked::after {
-      content: '';
-      position: absolute;
-      top: 5px;
-      left: 7px;
-      width: 6px;
-      height: 10px;
-      border: solid white;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-      }
-      .switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 26px;
-      }
-      .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-      }
-      .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #1E293B;
-      transition: .4s;
-      border-radius: 34px;
-      }
-      .slider:before {
-      position: absolute;
-      content: "";
-      height: 18px;
-      width: 18px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-      }
-      input:checked + .slider {
-      background-color: #8B5CF6;
-      }
-      input:checked + .slider:before {
-      transform: translateX(24px);
-      }
-      .custom-radio {
-      position: relative;
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: #1E293B;
-      cursor: pointer;
-      }
-      .custom-radio.checked {
-      background-color: #8B5CF6;
-      }
-      .custom-radio.checked::after {
-      content: '';
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: white;
-      }
-      .hero-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("astronout.jpg");
-      background-size: cover;
-      background-position: center;
-      opacity: 0.3;
-      z-index: -1;
-      }
-      .particle {
-      position: absolute;
-      background: linear-gradient(135deg, #8B5CF6, #EC4899);
-      border-radius: 50%;
-      opacity: 0.3;
-      }
-      .masonry-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      grid-auto-rows: 10px;
-      grid-gap: 20px;
-      }
-      .masonry-item {
-      grid-row-end: span var(--span);
-      }
-      input[type="number"]::-webkit-inner-spin-button,
-      input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-      }
-      /* input[type="number"] {
-      -moz-appearance: textfield;
-      } */
-      @keyframes headerEffect {
-        from { transform: translateY(-20px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-      }
-      .header-effect {
-        animation: headerEffect 1s ease-out;
-      }
-    </style>
+
   </head>
   <body class="bg-[#0F172A] text-gray-200">
-    <!-- Begin dev notification overlay -->
+    <!-- Begin dev notification  -->
     <!-- <div id="devNotification" class="fixed inset-0 bg-black bg-opacity-90 z-[10000] flex flex-col justify-center items-center">
       <div class="bg-[#1E293B] p-8 rounded-lg text-center max-w-md mx-4">
         <h2 class="text-2xl font-bold text-white mb-4">Coution!</h2>
@@ -249,10 +54,10 @@
         <button id="devNotificationBtn" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition-all duration-300">Ok</button>
       </div>
     </div> -->
-    <!-- End dev notification overlay -->
+    <!-- End dev notification -->
     <div class="custom-cursor"></div>
     <div class="custom-cursor-follower"></div>
-    <!-- Header -->
+    
     <header
       class="fixed top-0 left-0 w-full z-50 transition-all duration-300 header-effect"
       id="header"
@@ -262,42 +67,42 @@
       >
         <!-- Updated header logo size -->
         <a href="#home" class="logo">
-          <!-- Replace 'ubuntu-logo.png' with your PNG file path -->
+          <!-- Replace 'Tux.png' with your PNG file path -->
           <img src="Tux.png" alt="Header Logo" class="w-[69px] h-[69px]">
         </a>
         <nav class="hidden md:flex items-center space-x-8">
           <a
             href="#home"
-            class="text-gray-300 hover:text-white transition-colors"
+            class="text-gray-300 hover:text-white transition-colors header-effect font-bold text-gray-400"
             >Home</a
           >
           <a
             href="#skills"
-            class="text-gray-300 hover:text-white transition-colors"
+            class="text-gray-300 hover:text-white transition-colors font-bold text-gray-400"
             >Skills</a
           >
           <a
             href="#portfolio"
-            class="text-gray-300 hover:text-white transition-colors"
+            class="text-gray-300 hover:text-white transition-colors header-effect font-bold text-gray-400"
             >Portfolio</a
           >
           <a
             href="#news"
-            class="text-gray-300 hover:text-white transition-colors"
+            class="text-gray-300 hover:text-white transition-colors font-bold text-gray-400"
             >News</a
           >
           <a
             href="#social"
-            class="text-gray-300 hover:text-white transition-colors"
+            class="text-gray-300 hover:text-white transition-colors header-effect font-bold text-gray-400"
             >Social Media</a
           >
           <a
             href="#contact"
-            class="text-gray-300 hover:text-white transition-colors"
+            class="text-gray-300 hover:text-white transition-colors font-bold text-gray-400"
             >Contact</a
           >
         </nav>
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-4 font-bold">
           <a href="https://github.com/Code-Creator-man?tab=repositories" target="_blank" class="flex items-center space-x-1 text-gray-300 hover:text-white">
             <span class="w-6 h-6 flex items-center justify-center">
               <i class="ri-github-fill"></i>
@@ -1421,8 +1226,8 @@ I will start. #Blender3D #Tutorial
                     <i class="ri-map-pin-line text-xl text-primary"></i>
                   </div>
                   <div>
-                    <h4 class="font-medium mb-1">Location</h4>
-                    <p class="text-gray-400">Mary, Turkmenistan</p>
+                    <h4 class="font-medium mb-1 ">Location</h4>
+                    <p class="text-gray-400 ">Mary, Turkmenistan</p>
                   </div>
                 </div>
                 <div class="flex items-start">
