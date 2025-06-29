@@ -57,9 +57,6 @@
       </div>
     </div>
     <!--  dev notification -->
-    <div class="custom-cursor"></div>
-    <div class="custom-cursor-follower"></div>
-    
     <header
       class="fixed top-0 left-0 w-full z-50 transition-all duration-300 header-effect"
       id="header"
@@ -1497,31 +1494,6 @@ I will start. #Blender3D #Tutorial
         </div>
       </div>
     </div>
-    <script id="customCursorScript">
-      document.addEventListener("DOMContentLoaded", function () {
-        const cursor = document.querySelector(".custom-cursor");
-        const cursorFollower = document.querySelector(".custom-cursor-follower");
-        document.addEventListener("mousemove", function (e) {
-          cursor.style.left = e.clientX + "px";
-          cursor.style.top = e.clientY + "px";
-          setTimeout(function () {
-            cursorFollower.style.left = e.clientX + "px";
-            cursorFollower.style.top = e.clientY + "px";
-          }, 100);
-        });
-        const links = document.querySelectorAll("a, button");
-        links.forEach((link) => {
-          link.addEventListener("mouseenter", () => {
-            cursor.style.transform = "translate(-50%, -50%) scale(1.5)";
-            cursorFollower.style.transform = "translate(-50%, -50%) scale(0.5)";
-          });
-          link.addEventListener("mouseleave", () => {
-            cursor.style.transform = "translate(-50%, -50%) scale(1)";
-            cursorFollower.style.transform = "translate(-50%, -50%) scale(1)";
-          });
-        });
-      });
-    </script>
     <script id="headerScript">
       document.addEventListener("DOMContentLoaded", function () {
         const header = document.getElementById("header");
